@@ -6,10 +6,13 @@ end
 
 puts "roles created!"
 
-User.create!(first_name: 'Super', last_name: 'Admin', email: 'admin@example.com', password: 'admin@password')
+unless (User.find_by email: 'admin@example.com').present?
+  User.create!(email: 'admin@example.com', password: 'admin@password')
 
-puts "#{User.last.email} created!"
+  puts "#{User.last.email} created!"
 
-User.last.roles << Role.first
+  User.last.roles << Role.first
 
-puts "Role Assigned!"
+  puts "Role Assigned!"
+
+end

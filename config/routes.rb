@@ -12,6 +12,8 @@ Rails.application.routes.draw do
                              passwords:           'passwords'
              }
 
+  resources :profiles, only: [:show, :edit, :update]
+
   root 'home#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

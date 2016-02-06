@@ -22,6 +22,9 @@ module RailsPack
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
-    ADMIN_EMAIL = 'salayhin@gmail.com'
+    # ADMIN_EMAIL = 'salayhin@gmail.com'
+    config.generators do |g|
+      g.scaffold_controller "scaffold_controller"
+    end
   end
 end

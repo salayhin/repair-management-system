@@ -1,0 +1,50 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row m-b-lg m-t-lg">
+    <div class="col-md-6">
+
+      <div class="profile-image">
+        <%= image_tag @profile.photo.present? ? @profile.photo.url(:thumb) : 'http://placehold.it/75x75', class: "img-circle circle-border m-b-md" %>
+      </div>
+      <div class="profile-info">
+        <div class="">
+          <div>
+            <h2 class="no-margins">
+              <%= @profile.full_name %>
+            </h2>
+            <h4><%= user_role(@profile) %></h4>
+            <small>
+              There are many variations of passages of Lorem Ipsum available, but the majority
+              have suffered alteration in some form Ipsum available.
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <table class="table small m-b-xs">
+        <tbody>
+        <tr>
+          <td>
+            Phone <strong><%= @profile.mobile %></strong>
+          </td>
+          <td>
+            Address <strong><%= @profile.address %></strong>
+          </td>
+
+        </tr>
+        <tr>
+          <td>
+            <strong>61</strong> Repairs
+          </td>
+          <td>
+            <strong>54</strong> Repair Transferred
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <%= link_to 'Edit', edit_profile_path(@profile), class: 'btn btn-sm btn-white m-t-n-xs' if @profile == current_user.profile%>
+</div>

@@ -1,0 +1,97 @@
+<%= form_for(@profile, :html => {multipart: true}) do |f| %>
+    <% if @profile.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+
+          <ul>
+            <% @profile.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="wrapper wrapper-content animated fadeInRight">
+      <h1>Editing Profile</h1>
+
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="ibox float-e-margins">
+            <div class="ibox-title">
+              <h5>Profile
+                <small>Information</small>
+              </h5>
+            </div>
+            <div class="ibox-content">
+              <div class="row">
+                <div class="col-sm-6 b-r"><h3 class="m-t-none m-b">Basic info</h3>
+
+                  <p>Complete your personal information</p>
+
+                  <form role="form">
+                    <div class="form-group">
+                      <%= f.label :first_name %>
+                      <%= f.text_field :first_name, class: 'form-control', placeholder: 'First name', required: true %>
+                    </div>
+                    <div class="form-group">
+                      <%= f.label :last_name %>
+                      <%= f.text_field :last_name, class: 'form-control', placeholder: 'Last name', required: true %>
+                    </div>
+                    <div class="form-group">
+                      <%= f.label :mobile %>
+                      <%= f.text_field :mobile, class: 'form-control', placeholder: 'Mobile no.', required: true %>
+                    </div>
+                    <div class="form-group">
+                      <%= f.label :address %>
+                      <%= f.text_area :address, class: 'form-control', placeholder: 'Address', rows: '2' %>
+                    </div>
+                  </form>
+                </div>
+
+                <div class="col-sm-6"><h4>Profile picture</h4>
+
+                  <p><i class="fa fa-file-image-o fa-fw"></i> upload a cool profile photo</p>
+
+                  <p class="text-center">
+                    <input id="profile-pic-upload" class="hidden" type="file" name="profile[photo]">
+                    <%= image_tag @profile.photo.present? ? @profile.photo_url(:general) : 'http://placehold.it/200x200', :id => "uploaded-profile-pic", :class => 'profile-picture', alt: 'Profile picture' %>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions form-group">
+        <%= f.submit class: 'btn btn-sm btn-primary pull-left m-t-n-xs' %>
+        <%= link_to 'Show', @profile, class: 'btn btn-sm btn-white m-t-n-xs margin-left' %>
+      </div>
+    </div>
+
+<% end %>
+
+<script>
+    $(document).on('page:change', function (){
+
+        $('.profile-picture').on('click', function () {
+            $('#profile-pic-upload').click();
+        });
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#uploaded-profile-pic').attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#profile-pic-upload").change(function () {
+            readURL(this);
+        });
+    });
+</script>
