@@ -1,6 +1,6 @@
 
 
-['SuperAdmin', 'Member'].each do |role|
+['Admin', 'Receptionist', 'Technician', 'Top Level Technician'].each do |role|
   Role.where(name: role).first_or_create
 end
 
