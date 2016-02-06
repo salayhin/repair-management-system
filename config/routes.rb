@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     get 'dashboard' => 'dashboard#index'
     resources :users
     resources :device_brands
+    resources :device_models
   end
 
   devise_for :users, path_names: { sign_up: 'register' },

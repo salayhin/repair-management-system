@@ -1,0 +1,60 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+  <h1><%= @device_model.new_record? ? 'New Device Model' : 'Edit Model' %></h1>
+
+  <div class="row">
+    <div class="col-lg-8">
+      <%= form_for([:admin, @device_model], :html => {class: '', role: 'form', multipart: true}) do |f| %>
+
+          <%= render partial: 'shared/errors', :locals => {object: @device_model} %>
+
+          <div class="ibox float-e-margins">
+            <div class="ibox-title">
+              <h5>Model Information</h5>
+            </div>
+
+            <div class="ibox-content">
+
+              <div class="form-group">
+                <%= f.label 'Select Brand', class: 'sr-only' %>
+                <%= f.select :device_brand_id, options_for_select(@device_brands.collect{|brand| [brand.name, brand.id]}), prompt: 'Select brand', class: 'form-control m-b' %>
+              </div>
+              <div class="form-group">
+                <%= f.label 'Model Name', class: 'sr-only' %>
+                <%= f.text_field :name, class: 'form-control', placeholder: 'Model name' %>
+              </div>
+              <div class="form-group">
+                <%= f.label 'Model Logo', class: 'sr-only' %>
+                <%= f.file_field :logo, class: 'logo-upload-btn btn-sm btn-success' %>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="actions form-group">
+            <%= f.submit class: 'btn btn-sm btn-primary pull-left m-t-n-xs' %>
+            <%= link_to 'Back', admin_device_models_path, class: 'btn btn-sm btn-white m-t-n-xs margin-left' %>
+          </div>
+      <% end %>
+    </div>
+    <div class="col-lg-4">
+      <h3>Other Models</h3>
+      <div>
+        <table class="table">
+          <tbody>
+          <% @device_models.each do |model| %>
+              <tr>
+                <td>
+                  <%= image_tag model.logo.present? ? model.logo.url(:logo) : 'http://placehold.it/75x75' %>
+                </td>
+                <td>
+                  <button class="btn btn-danger m-r-sm" type="button">12</button>
+                  Total models
+                </td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

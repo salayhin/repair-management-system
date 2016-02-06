@@ -1,0 +1,43 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row m-b-lg m-t-lg">
+    <div class="col-md-6">
+
+      <div class="profile-image">
+        <%= image_tag @device_model.logo.present? ? @device_model.logo.url(:logo) : 'http://placehold.it/100x100', class: "m-b-md" %>
+      </div>
+      <div class="profile-info">
+        <div class="">
+          <div>
+            <h2 class="no-margins">
+              <%= @device_model.name %>
+            </h2>
+            <small>
+              There are many variations of passages of Lorem Ipsum available, but the majority
+              have suffered alteration in some form Ipsum available.
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <table class="table small m-b-xs">
+        <tbody>
+        <tr>
+          <td>
+            Repair Orders <strong>100</strong>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Device Brand <strong><%= @device_model.device_brand.name %></strong>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <%= link_to 'Edit', edit_admin_device_model_path(@device_model), class: 'btn btn-sm btn-white m-t-n-xs'%>
+  <%= link_to 'back', admin_device_models_path, class: 'mergin-left btn btn-sm btn-white m-t-n-xs' %>
+</div>
