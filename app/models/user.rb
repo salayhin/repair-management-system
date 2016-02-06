@@ -9,12 +9,16 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
+  attr_accessor :role_id
+
+  validates_presence_of :role_id
+
   def role?(role)
     !!self.roles.find_by_name(role.to_s.camelize)
   end
 
   def is_admin?
-    self.role?(:super_admin)
+    self.role?(:admin)
   end
 
   def self.from_omniauth(access_token)
@@ -99,6 +103,19 @@ class User < ActiveRecord::Base
 
   def create_public_profile
     name = self.email.split('@')[0]
-    Profile.create!(:user_id => self.id, :first_name => name, :last_name => 'change it') unless self.profile.present?
+    unless self.profile.present?
+      profile = Profile.new(:user_id => self.id, :first_name => name, :last_name => 'change it')
+      profile.save(validate: false)
+    end
+  end
+
+  def assign_user_role(role_id)
+    if role_id.nil?
+      self.roles.destroy_all
+      self.roles << Role.last
+    else
+      self.roles.destroy_all
+      self.roles << Role.find(role_id)
+    end
   end
 end

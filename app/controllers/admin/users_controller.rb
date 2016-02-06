@@ -1,6 +1,6 @@
 module Admin
   class UsersController < ApplicationController
-    before_filter :authenticate_user!
+    before_filter :authenticate_admin_user!
     layout 'admin'
     before_action :set_admin_user, only: [:show, :edit, :update, :destroy]
 
@@ -13,6 +13,7 @@ module Admin
     # GET /admin/users/1
     # GET /admin/users/1.json
     def show
+      redirect_to profile_path(@user.profile)
     end
 
     # GET /admin/users/new
@@ -31,8 +32,9 @@ module Admin
 
       respond_to do |format|
         if @user.save
+          @user.assign_user_role(params[:user][:role_id])
           format.html { redirect_to @user, notice: 'User was successfully created.' }
-          format.json { render :show, status: :created, location: @admin_user }
+          format.json { render :show, status: :created, location: @user }
         else
           format.html { render :new }
           format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -45,7 +47,8 @@ module Admin
     def update
       respond_to do |format|
         if @user.update(admin_user_params)
-          format.html { redirect_to @user, notice: 'User was successfully updated.' }
+          @user.assign_user_role(params[:user][:role_id])
+          format.html { redirect_to @user.profile, notice: 'User was successfully updated.' }
           format.json { render :show, status: :ok, location: @user }
         else
           format.html { render :edit }
@@ -72,7 +75,7 @@ module Admin
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :password)
+      params.require(:user).permit(:role_id, :email, :password)
     end
   end
 end
