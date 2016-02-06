@@ -1,0 +1,56 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+  <h1><%= @device_brand.new_record? ? 'New Device Brand' : 'Edit Brand' %></h1>
+
+  <div class="row">
+    <div class="col-lg-8">
+      <%= form_for([:admin, @device_brand], :html => {class: 'form-inline', role: 'form'}) do |f| %>
+
+          <%= render partial: 'shared/errors', :locals => {object: @device_brand} %>
+
+          <div class="ibox float-e-margins">
+            <div class="ibox-title">
+              <h5>Brand Information</h5>
+            </div>
+
+            <div class="ibox-content">
+
+              <div class="form-group">
+                <%= f.label 'Brand Name', class: 'sr-only' %>
+                <%= f.text_field :name, class: 'form-control', placeholder: 'Brand name' %>
+              </div>
+              <div class="form-group">
+                <%= f.label 'Brand Logo', class: 'sr-only' %>
+                <%= f.file_field :logo, class: 'logo-upload-btn btn-sm btn-success' %>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="actions form-group">
+            <%= f.submit class: 'btn btn-sm btn-primary pull-left m-t-n-xs' %>
+            <%= link_to 'Back', admin_device_brands_path, class: 'btn btn-sm btn-white m-t-n-xs margin-left' %>
+          </div>
+      <% end %>
+    </div>
+    <div class="col-lg-4">
+      <h3>Other Brands</h3>
+      <div>
+        <table class="table">
+          <tbody>
+          <% @device_brands.each do |brand| %>
+              <tr>
+                <td>
+                  <%= image_tag brand.logo.present? ? brand.logo.url(:logo) : 'http://placehold.it/75x75' %>
+                </td>
+                <td>
+                  <button class="btn btn-danger m-r-sm" type="button">12</button>
+                  Total models
+                </td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
