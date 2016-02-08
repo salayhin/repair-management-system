@@ -1,7 +1,0 @@
-
-
-Started GET "/users/sign_in" for 127.0.0.1 at 2016-02-06 23:10:20 +0600
-  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
-Processing by SessionsController#new as HTML
-  Rendered sessions/new.html.erb (4071.5ms)
-Completed 200 OK in 4213ms (Views: 4117.9ms | ActiveRecord: 2.5ms)
