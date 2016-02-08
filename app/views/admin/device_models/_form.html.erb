@@ -47,8 +47,8 @@
                   <%= image_tag model.logo.present? ? model.logo.url(:logo) : 'http://placehold.it/75x75' %>
                 </td>
                 <td>
-                  <button class="btn btn-danger m-r-sm" type="button">12</button>
-                  Total models
+                  Brand: <strong><%= model.device_brand.name %></strong><br>
+                  Repair Orders: <strong>12</strong>
                 </td>
               </tr>
           <% end %>
