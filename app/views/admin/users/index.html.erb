@@ -1,4 +1,4 @@
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<div class="col-sm-12 col-md-12 main">
   <%- model_class = User -%>
   <div class="page-header">
     <h3>
@@ -13,8 +13,8 @@
     <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:first_name) %></th>
-      <th><%= model_class.human_attribute_name(:last_name) %></th>
+      <th><%= Profile.human_attribute_name(:first_name) %></th>
+      <th><%= Profile.human_attribute_name(:last_name) %></th>
       <th><%= model_class.human_attribute_name(:email) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t('helpers.actions') %></th>
@@ -24,8 +24,8 @@
     <% @users.each do |user| %>
         <tr>
           <td><%= link_to user.id, admin_user_path(user) %></td>
-          <td><%= user.first_name %></td>
-          <td><%= user.last_name %></td>
+          <td><%= user.profile.first_name %></td>
+          <td><%= user.profile.last_name %></td>
           <td><%= user.email %></td>
           <td><%=l user.created_at %></td>
           <td>

@@ -21,6 +21,10 @@ class User < ActiveRecord::Base
     self.role?(:admin)
   end
 
+  def is_super_admin?
+    self.role?(:super_admin)
+  end
+
   def self.from_omniauth(access_token)
     data = access_token.info
     provider = access_token.provider

@@ -1,13 +1,13 @@
 module Admin
   class UsersController < ApplicationController
-    before_filter :authenticate_admin_user!
+    before_filter :authenticate_admin_user!, except: [:show]
     layout 'admin'
     before_action :set_admin_user, only: [:show, :edit, :update, :destroy]
 
     # GET /admin/users
     # GET /admin/users.json
     def index
-      @users = User.all
+      @users = User.includes(:profile).all
     end
 
     # GET /admin/users/1
@@ -33,7 +33,7 @@ module Admin
       respond_to do |format|
         if @user.save
           @user.assign_user_role(params[:user][:role_id])
-          format.html { redirect_to @user, notice: 'User was successfully created.' }
+          format.html { redirect_to @user.profile, notice: 'User was successfully created.' }
           format.json { render :show, status: :created, location: @user }
         else
           format.html { render :new }

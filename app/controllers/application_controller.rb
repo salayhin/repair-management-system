@@ -20,6 +20,6 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_admin_user!
-    redirect_to root_path unless current_user.try(:is_admin?)
+    redirect_to root_path unless current_user.try(:is_admin?) || current_user.try(:is_super_admin?)
   end
 end
