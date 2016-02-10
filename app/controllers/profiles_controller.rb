@@ -3,6 +3,7 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_profile, only: [:show, :edit, :update]
+  before_action :load_service_centers
 
   layout 'admin'
 
@@ -38,7 +39,11 @@ class ProfilesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def profile_params
-    params.require(:profile).permit(:first_name, :last_name, :address, :mobile, :photo)
+    params.require(:profile).permit(:first_name, :last_name, :address, :mobile, :photo, :service_center_id)
+  end
+
+  def load_service_centers
+    @service_centers = ServiceCenter.order('updated_at DESC')
   end
 
 end

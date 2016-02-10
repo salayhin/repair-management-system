@@ -4,6 +4,7 @@ class Profile < ActiveRecord::Base
 
   # associations
   belongs_to :user
+  belongs_to :service_center
 
   # validations
   validates_presence_of :first_name, :last_name, :mobile, :address

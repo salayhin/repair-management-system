@@ -36,6 +36,10 @@
                       <%= f.label :address %>
                       <%= f.text_area :address, class: 'form-control', placeholder: 'Address', rows: '2' %>
                     </div>
+                    <div class="form-group">
+                      <%= f.label 'Service Center' %>
+                      <%= f.select :service_center_id, options_for_select(@service_centers.collect{|sc| [sc.name, sc.id] }, @profile.service_center), prompt: 'Assign User to any Service Center ' %>
+                    </div>
                   </form>
                 </div>
 

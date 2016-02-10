@@ -51,7 +51,7 @@
                     <tr class="gradeA <%= i%2 == 0 ? 'odd' : 'even' %>" role="row">
                       <td class="sorting_1"><%= center.name %></td>
                       <td><%= center.address %></td>
-                      <td><%= '10' %></td>
+                      <td><%= center.profiles.count %></td>
                       <td class="center"><%= center.phone %></td>
                       <td><%= center.is_active ? 'Active' : 'Not Available' %></td>
                       <td>
