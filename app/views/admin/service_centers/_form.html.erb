@@ -1,0 +1,83 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+  <h1><%= @service_center.new_record? ? 'New Service Center' : 'Edit Service Center' %></h1>
+
+  <div class="row">
+    <div class="col-lg-8">
+      <%= form_for([:admin, @service_center], :html => {role: 'form'}) do |f| %>
+
+          <%= render partial: 'shared/errors', :locals => {object: @service_center} %>
+
+          <div class="ibox float-e-margins">
+            <div class="ibox-title">
+              <h5>Service Center Information</h5>
+            </div>
+
+            <div class="ibox-content">
+
+              <div class="form-group">
+                <%= f.label 'Center Name' %>
+                <%= f.text_field :name, class: 'form-control', placeholder: 'Center name' %>
+              </div>
+              <div class="form-group">
+                <%= f.label 'Center Full address' %>
+                <%= f.text_field :address, class: 'form-control', placeholder: 'Full address', required: true %>
+              </div>
+              <div class="form-group">
+                <%= f.label 'Center City' %>
+                <%= f.text_field :city, class: 'form-control', placeholder: 'City name', required: true %>
+              </div>
+              <div class="form-group">
+                <%= f.label 'Center Phone number' %>
+                <%= f.text_field :phone, class: 'form-control', placeholder: 'Phone', required: true %>
+              </div>
+              <div class="form-group">
+                <div class="switch">
+                  <div class="onoffswitch">
+                    <%= f.check_box :is_active, id: 'example1', class: 'onoffswitch-checkbox'  %>
+                    <!--<input type="checkbox" id="example1" class="onoffswitch-checkbox" name="service_center[is_active]" checked="" value="true">-->
+                    <label for="example1" class="onoffswitch-label">
+                      <span class="onoffswitch-inner"></span>
+                      <span class="onoffswitch-switch"></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="actions form-group">
+            <%= f.submit class: 'btn btn-sm btn-primary pull-left m-t-n-xs' %>
+            <%= link_to 'Back', admin_service_centers_path, class: 'btn btn-sm btn-white m-t-n-xs margin-left' %>
+          </div>
+      <% end %>
+    </div>
+    <div class="col-lg-4">
+      <h3>Other Service Centers</h3>
+          <% @service_centers.each do |center| %>
+              <div class="widget lazur-bg p-xl">
+
+                <h2>
+                  <%= center.name %>
+                </h2>
+                <ul class="list-unstyled m-t-md">
+                  <li>
+                    <span class="fa fa-home m-r-xs"></span>
+                    <label>City:</label>
+                    <%= center.city %>
+                  </li>
+                  <li>
+                    <span class="fa fa-envelope m-r-xs"></span>
+                    <label>Address:</label>
+                    <%= center.address %>
+                  </li>
+                  <li>
+                    <span class="fa fa-phone m-r-xs"></span>
+                    <label>Contact:</label>
+                    <%= center.phone %>
+                  </li>
+                </ul>
+              </div>
+          <% end %>
+      </div>
+  </div>
+</div>
