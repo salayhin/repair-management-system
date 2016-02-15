@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160210190813) do
+ActiveRecord::Schema.define(version: 20160215204400) do
+
+  create_table "activity_statuses", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "status",     limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "device_brands", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -26,6 +33,29 @@ ActiveRecord::Schema.define(version: 20160210190813) do
     t.integer  "device_brand_id", limit: 4
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+  end
+
+  create_table "device_problems", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.string   "description", limit: 255
+    t.string   "status",      limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "device_statuses", force: :cascade do |t|
+    t.string   "name",               limit: 255
+    t.string   "status",             limit: 255
+    t.integer  "activity_status_id", limit: 4
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  create_table "final_statuses", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "status",     limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "profiles", force: :cascade do |t|

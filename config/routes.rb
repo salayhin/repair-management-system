@@ -6,6 +6,10 @@ Rails.application.routes.draw do
     resources :device_brands
     resources :device_models
     resources :service_centers
+    resources :device_problems
+    resources :activity_statuses
+    resources :device_statuses
+    resources :final_statuses
   end
 
   devise_for :users, path_names: { sign_up: 'register' },
