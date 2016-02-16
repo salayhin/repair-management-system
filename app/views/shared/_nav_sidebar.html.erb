@@ -4,7 +4,7 @@
 
       <li class="nav-header">
         <div class="dropdown profile-element"> <span>
-            <%= image_tag 'profile_small.jpg',:class => 'img-circle'%>
+            <%= image_tag current_user.profile.photo.present? ? current_user.profile.photo_url(:thumb) : 'profile_small.jpg',:class => 'img-circle'%>
                              </span>
           <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> <span class="block m-t-xs">
@@ -13,7 +13,7 @@
                             <span class="text-muted text-xs block"><%= current_user.roles.first.name %> <b class="caret"></b></span>
                             </span> </a>
           <ul class="dropdown-menu animated fadeInRight m-t-xs">
-            <li><a href="#">Profile</a></li>
+            <li><a href="<%= profile_path(current_user.profile) %>">Profile</a></li>
             <li class="divider"></li>
             <li><%= link_to 'Logout', destroy_user_session_path, :method => 'delete' %></li>
           </ul>
@@ -24,28 +24,28 @@
         </div>
       </li>
       <li>
-        <a href="#"><i class="fa fa-plug"></i> <span class="nav-label">Service Centers</span><span class="fa arrow"></span></a>
+        <a href="javascript:;"><i class="fa fa-plug"></i> <span class="nav-label">Service Centers</span><span class="fa arrow"></span></a>
         <ul class="nav nav-second-level collapse">
           <li><a href="<%= new_admin_service_center_path %>">Create New</a></li>
           <li><a href="<%= admin_service_centers_path %>">All Centers</a></li>
         </ul>
       </li>
       <li>
-        <a href="#"><i class="fa fa-globe"></i> <span class="nav-label">Device Brands</span><span class="fa arrow"></span></a>
+        <a href="javascript:;"><i class="fa fa-globe"></i> <span class="nav-label">Device Brands</span><span class="fa arrow"></span></a>
         <ul class="nav nav-second-level collapse">
           <li><a href="<%= new_admin_device_brand_path %>">Create Brand</a></li>
           <li><a href="<%= admin_device_brands_path %>">All Brands</a></li>
         </ul>
       </li>
       <li>
-        <a href="#"><i class="fa fa-tablet"></i> <span class="nav-label">Device Models</span><span class="fa arrow"></span></a>
+        <a href="javascript:;"><i class="fa fa-tablet"></i> <span class="nav-label">Device Models</span><span class="fa arrow"></span></a>
         <ul class="nav nav-second-level collapse">
           <li><a href="<%= new_admin_device_model_path %>">Create Model</a></li>
           <li><a href="<%= admin_device_models_path %>">All Models</a></li>
         </ul>
       </li>
       <li>
-        <a href="#"><i class="fa fa-tablet"></i> <span class="nav-label">Device Problems</span><span class="fa arrow"></span></a>
+        <a href="javascript:;"><i class="fa fa-bug"></i> <span class="nav-label">Device Problems</span><span class="fa arrow"></span></a>
         <ul class="nav nav-second-level collapse">
           <li><a href="<%= new_admin_device_problem_path %>">Create Device Problem</a></li>
           <li><a href="<%= admin_device_problems_path %>">All Device Problems</a></li>
@@ -53,7 +53,7 @@
       </li>
 
       <li>
-        <a href="#"><i class="fa fa-tablet"></i> <span class="nav-label">Activity Status</span><span class="fa arrow"></span></a>
+        <a href="javascript:;"><i class="fa fa-check"></i> <span class="nav-label">Activity Status</span><span class="fa arrow"></span></a>
         <ul class="nav nav-second-level collapse">
           <li><a href="<%= new_admin_activity_status_path %>">Create Activity Status</a></li>
           <li><a href="<%= admin_activity_statuses_path %>">All Activity Status</a></li>
@@ -61,7 +61,7 @@
       </li>
 
       <li>
-        <a href="#"><i class="fa fa-tablet"></i> <span class="nav-label">Device Status</span><span class="fa arrow"></span></a>
+        <a href="javascript:;"><i class="fa fa-signal"></i> <span class="nav-label">Device Status</span><span class="fa arrow"></span></a>
         <ul class="nav nav-second-level collapse">
           <li><a href="<%= new_admin_device_status_path %>">Create Device Status</a></li>
           <li><a href="<%= admin_device_statuses_path %>">All Device Status</a></li>
@@ -69,7 +69,7 @@
       </li>
 
       <li>
-        <a href="#"><i class="fa fa-tablet"></i> <span class="nav-label">Final Status</span><span class="fa arrow"></span></a>
+        <a href="javascript:;"><i class="fa fa-tag"></i> <span class="nav-label">Final Status</span><span class="fa arrow"></span></a>
         <ul class="nav nav-second-level collapse">
           <li><a href="<%= new_admin_final_status_path %>">Create Final Status</a></li>
           <li><a href="<%= admin_final_statuses_path %>">All Final Status</a></li>
