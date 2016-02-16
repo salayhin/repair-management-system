@@ -4,8 +4,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 4.2', '>= 4.2.5.1'
 # Use postgresql as the database for Active Record
-#gem 'pg'
-gem 'mysql2', '~> 0.3.18'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -34,6 +33,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  gem 'mysql2', '~> 0.3.18'
   gem 'web-console', '~> 2.0'
   gem 'better_errors'
   gem 'binding_of_caller'
@@ -45,6 +45,10 @@ group :development, :test do
   gem 'sshkit', '~> 1.7.1'
   gem 'rvm1-capistrano3', require: false
   gem 'capistrano-bundler'
+end
+
+group :production do
+  gem 'pg'
 end
 
 gem 'devise'
