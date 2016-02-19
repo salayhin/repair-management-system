@@ -2,7 +2,7 @@
 lock '3.2.1'
 
 set :application, 'rms'
-set :repo_url, 'git@github.com:salayhin/repair-management-system.git'
+set :repo_url, 'https://github.com/salayhin/repair-management-system.git'
 
 set :user, 'root'  # your server SSH user
 set :use_sudo, false

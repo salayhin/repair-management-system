@@ -29,7 +29,7 @@ set 'rails_env', :staging
 # server list. The second argument is a, or duck-types, Hash and is
 # used to set extended properties on the server.
 
-#server 'example.com', user: 'deploy', roles: %w{web app}, my_property: :my_value
+server '104.237.196.10', user: 'root', roles: %w{web app db}
 
 
 # Custom SSH Options
