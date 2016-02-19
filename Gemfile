@@ -48,7 +48,8 @@ group :development, :test do
 end
 
 group :production do
-  gem 'pg'
+  # gem 'pg'
+  gem 'mysql2', '~> 0.3.18'
 end
 
 gem 'devise'
@@ -61,3 +62,4 @@ gem 'omniauth-linkedin', '~> 0.2.0'
 gem 'omniauth-twitter', '~> 1.2.0'
 gem 'carrierwave', '~> 0.10.0'
 gem 'mini_magick', '~> 4.2.10'
+gem 'font-awesome-rails', '~> 4.5', '>= 4.5.0.1'
