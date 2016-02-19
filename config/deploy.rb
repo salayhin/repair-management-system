@@ -1,10 +1,10 @@
 # config valid only for Capistrano 3.1
 lock '3.2.1'
 
-set :application, 'your_app_name'
-set :repo_url, 'your_repo_url.git'
+set :application, 'rms'
+set :repo_url, 'git@github.com:salayhin/repair-management-system.git'
 
-set :user, 'deployer'  # your server SSH user
+set :user, 'root'  # your server SSH user
 set :use_sudo, false
 
 # Default branch is :master
@@ -19,7 +19,7 @@ set :deploy_via, :remote_cache # off while it is first deployment
 
 # Default value for :format is :pretty
 # set :format, :pretty
-set :rvm1_ruby_version, "ruby-2.1.5"
+set :rvm1_ruby_version, "ruby-2.2.2"
 
 # Default value for :log_level is :debug
 # set :log_level, :debug
@@ -45,7 +45,7 @@ set :keep_releases, 5
 
 # set config unicorn.rb, unicorn_init.sh, nginx.conf file permission after deployment
 set :file_permissions_roles, :all
-set :file_permissions_users, ['deployer']
+set :file_permissions_users, ['root']
 set :file_permissions_chmod_mode, "0777"
 
 
