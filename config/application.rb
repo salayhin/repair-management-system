@@ -26,5 +26,8 @@ module RailsPack
     config.generators do |g|
       g.scaffold_controller "scaffold_controller"
     end
+    Dir.glob("#{Rails.root}/app/assets/images/**/").each do |path|
+      config.assets.paths << path
+    end
   end
 end

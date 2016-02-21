@@ -8,15 +8,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Repair Management System | Codeknob</title>
-
+  <%= favicon_link_tag 'favicon.png' %>
   <%= stylesheet_link_tag 'application', :media => 'all' %>
 
-  <%= javascript_include_tag "application_admin" %>
+  <%= javascript_include_tag "application_admin", 'data-turbolinks-eval' => false, "data-turbolinks-track" => false %>
 
 </head>
 
 <body>
-<div id="wrapper">
+<div id="wrapper" class="<%= attach_class %>">
   <%= render :partial => 'shared/nav_sidebar' %>
 
   <div id="page-wrapper" class="gray-bg">

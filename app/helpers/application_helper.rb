@@ -7,4 +7,11 @@ module ApplicationHelper
     end
   end
 
+  def attach_class
+    if params[:controller].include?('/')
+      return params[:controller].split('/').last + '-' + params[:action]
+    else
+      return params[:controller] + '-' + params[:action]
+    end
+  end
 end
