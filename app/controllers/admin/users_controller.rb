@@ -37,8 +37,7 @@ module Admin
       respond_to do |format|
         if @user.save
           @user.assign_user_role(params[:user][:role_id])
-          @user.create_public_profile
-          format.html { redirect_to profile_path(@user.profile), notice: 'User was successfully created.' }
+          format.html { redirect_to admin_user_path(@user), notice: 'User was successfully created.' }
           format.json { render :show, status: :created, location: @user }
         else
           format.html { render :new }
