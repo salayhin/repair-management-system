@@ -154,7 +154,7 @@
               <%= image_tag user.profile.photo.present? ? user.profile.photo_url(:thumb) : 'profile.jpg', :class=> "img-responsive img-circle img-small" %>
               <h4><span class="navy"><%= user.profile.first_name %></span> <%= user.profile.last_name %></h4>
               <p><%= user.email %></p>
-              <p><%= user.profile.phone %></p>
+              <p><%= user.profile.mobile %></p>
               <ul class="list-inline social-icon">
                 <li><a href="#"><i class="fa fa-twitter"></i></a>
                 </li>

@@ -7,7 +7,11 @@ module Admin
     # GET /admin/users
     # GET /admin/users.json
     def index
-      @users = User.includes(:profile).all
+      if current_user.is_super_admin?
+        @users = User.includes(:profile).all
+      else
+        @users = current_user.profile.service_center.profiles.collect { |p| p.user }
+      end
     end
 
     # GET /admin/users/1
@@ -33,7 +37,8 @@ module Admin
       respond_to do |format|
         if @user.save
           @user.assign_user_role(params[:user][:role_id])
-          format.html { redirect_to @user.profile, notice: 'User was successfully created.' }
+          @user.create_public_profile
+          format.html { redirect_to profile_path(@user.profile), notice: 'User was successfully created.' }
           format.json { render :show, status: :created, location: @user }
         else
           format.html { render :new }

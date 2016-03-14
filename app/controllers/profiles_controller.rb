@@ -12,7 +12,9 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/1/edit
   def edit
-    unless current_user.profile == @profile
+    if current_user.is_super_admin? || current_user.profile == @profile
+      # redirect_to edit_profile_path(params[:id])
+    else
       redirect_to edit_profile_path(current_user.profile)
     end
   end

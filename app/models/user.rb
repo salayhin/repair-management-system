@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :roles
   has_one :profile, :dependent => :destroy
 
-  after_create :create_public_profile
+  # after_create :create_public_profile
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -108,8 +108,8 @@ class User < ActiveRecord::Base
   def create_public_profile
     name = self.email.split('@')[0]
     unless self.profile.present?
-      profile = Profile.new(:user_id => self.id, :first_name => name, :last_name => 'change it')
-      profile.save(validate: false)
+      new_profile = Profile.new({:user_id => self.id, :first_name => name, :last_name => 'change it'})
+      new_profile.save(validate: false)
     end
   end
 
