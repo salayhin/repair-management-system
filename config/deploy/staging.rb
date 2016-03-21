@@ -42,6 +42,6 @@ server '104.237.196.10', user: 'root', roles: %w{web app db}
 set :ssh_options, {
                     forward_agent: false,
                     auth_methods: %w(password),
-                    password: '8d3WjiY20k', # change to your password
+                    password: '*********', # change to your password
                     user: 'root',  # change to your server SSH user
                 }
