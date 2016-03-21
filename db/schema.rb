@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160215204400) do
+ActiveRecord::Schema.define(version: 20160320171937) do
 
   create_table "activity_statuses", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -56,6 +56,17 @@ ActiveRecord::Schema.define(version: 20160215204400) do
     t.string   "status",     limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+  end
+
+  create_table "parts_inventories", force: :cascade do |t|
+    t.string   "name",              limit: 255
+    t.integer  "stock",             limit: 4
+    t.integer  "used",              limit: 4,     default: 0
+    t.string   "identification_no", limit: 255
+    t.text     "description",       limit: 65535
+    t.boolean  "status",                          default: true
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
   end
 
   create_table "profiles", force: :cascade do |t|

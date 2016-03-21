@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :activity_statuses
     resources :device_statuses
     resources :final_statuses
+    resources :parts_inventories
   end
 
   devise_for :users, path_names: { sign_up: 'register' },

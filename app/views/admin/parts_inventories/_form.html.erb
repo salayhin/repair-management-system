@@ -1,0 +1,54 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+  <h1><%= @parts_inventory.new_record? ? 'New Parts' : 'Edit Parts' %></h1>
+
+  <div class="row">
+    <div class="col-lg-8">
+      <%= form_for([:admin, @parts_inventory], :html => {role: 'form'}) do |f| %>
+
+          <%= render partial: 'shared/errors', :locals => {object: @parts_inventory} %>
+
+          <div class="ibox float-e-margins">
+            <div class="ibox-title">
+              <h5>Parts Inventory</h5>
+            </div>
+
+            <div class="ibox-content">
+
+              <div class="form-group">
+                <%= f.label 'Name' %>
+                <%= f.text_field :name, class: 'form-control', placeholder: 'Name', required: true %>
+              </div>
+              <div class="form-group">
+                <%= f.label 'Description' %>
+                <%= f.text_area :description, class: 'form-control', placeholder: 'About this part'%>
+              </div>
+              <div class="form-group">
+                <%= f.label 'Quantity(Stock)' %>
+                <%= f.text_field :stock, class: 'form-control', placeholder: 'Quantity', required: true %>
+              </div>
+              <div class="form-group">
+                <%= f.label 'Identification Number' %>
+                <%= f.text_field :identification_no, class: 'form-control', placeholder: 'Identification Number' %>
+              </div>
+              <div class="form-group">
+                <div class="switch">
+                  <div class="onoffswitch">
+                    <%= f.check_box :status, id: 'example1', class: 'onoffswitch-checkbox'  %>
+                    <label for="example1" class="onoffswitch-label">
+                      <span class="onoffswitch-inner"></span>
+                      <span class="onoffswitch-switch"></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="actions form-group">
+            <%= f.submit class: 'btn btn-sm btn-primary pull-left m-t-n-xs' %>
+            <%= link_to 'Back', admin_parts_inventories_path, class: 'btn btn-sm btn-white m-t-n-xs margin-left' %>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>

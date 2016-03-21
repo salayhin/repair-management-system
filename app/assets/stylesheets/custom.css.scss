@@ -65,3 +65,13 @@
 }
   li > a {padding: 5px 20px 5px 25px}
 }
+body{
+  .onoffswitch-inner:before {
+    content: "Active";
+  }
+  .onoffswitch-inner:after {
+    content: "Inactive";
+  }
+  .onoffswitch{width: 70px}
+  .onoffswitch-switch{right: 52px}
+}

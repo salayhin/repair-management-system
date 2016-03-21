@@ -1,0 +1,38 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row m-b-lg m-t-lg">
+    <div class="col-md-8">
+      <table class="table small m-b-xs">
+        <tbody>
+        <tr>
+          <td>
+            Name <strong><%= @parts_inventory.name %></strong>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Description <strong><%= @parts_inventory.description %></strong>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Quantity(Stock) <strong><%= @parts_inventory.stock %></strong>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Used <strong><%= @parts_inventory.used %></strong>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Identification No. <strong><%= @parts_inventory.identification_no %></strong>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <%= link_to 'Edit', edit_admin_parts_inventory_path(@parts_inventory), class: 'btn btn-sm btn-white m-t-n-xs' if admins? %>
+  <%= link_to 'back', admin_parts_inventories_path, class: 'mergin-left btn btn-sm btn-white m-t-n-xs' %>
+</div>

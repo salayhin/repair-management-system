@@ -62,6 +62,14 @@
       </li>
 
       <li>
+        <a href="javascript:;"><i class="fa fa-cubes"></i> <span class="nav-label">Inventory</span><span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level collapse in">
+          <li><a href="<%= new_admin_parts_inventory_path %>">Create New Part</a></li>
+          <li><a href="<%= admin_parts_inventories_path %>">All Parts</a></li>
+        </ul>
+      </li>
+
+      <li>
         <a href="javascript:;"><i class="fa fa-check"></i> <span class="nav-label">Activity Status</span><span class="fa arrow"></span></a>
         <ul class="nav nav-second-level collapse in">
           <li><a href="<%= new_admin_activity_status_path %>">Create Activity Status</a></li>
