@@ -2,7 +2,7 @@
   <h1><%= @parts_inventory.new_record? ? 'New Parts' : 'Edit Parts' %></h1>
 
   <div class="row">
-    <div class="col-lg-8">
+    <div class="col-md-8">
       <%= form_for([:admin, @parts_inventory], :html => {role: 'form'}) do |f| %>
 
           <%= render partial: 'shared/errors', :locals => {object: @parts_inventory} %>
@@ -20,7 +20,7 @@
               </div>
               <div class="form-group">
                 <%= f.label 'Description' %>
-                <%= f.text_area :description, class: 'form-control', placeholder: 'About this part'%>
+                <%= f.text_area :description, class: 'form-control', placeholder: 'About this part' %>
               </div>
               <div class="form-group">
                 <%= f.label 'Quantity(Stock)' %>
@@ -33,7 +33,7 @@
               <div class="form-group">
                 <div class="switch">
                   <div class="onoffswitch">
-                    <%= f.check_box :status, id: 'example1', class: 'onoffswitch-checkbox'  %>
+                    <%= f.check_box :status, id: 'example1', class: 'onoffswitch-checkbox' %>
                     <label for="example1" class="onoffswitch-label">
                       <span class="onoffswitch-inner"></span>
                       <span class="onoffswitch-switch"></span>
@@ -49,6 +49,22 @@
             <%= link_to 'Back', admin_parts_inventories_path, class: 'btn btn-sm btn-white m-t-n-xs margin-left' %>
           </div>
       <% end %>
+    </div>
+
+    <div class="col-md-4">
+      <h4>Other Parts</h4>
+      <table class="table small m-b-xs">
+        <% all_parts.each do |part| %>
+            <tbody>
+            <tr>
+              <td>
+                Name <strong><%= part.name %></strong><br>
+                Quantity(Stock) <strong><%= part.stock %></strong>
+              </td>
+            </tr>
+            </tbody>
+        <% end %>
+      </table>
     </div>
   </div>
 </div>
