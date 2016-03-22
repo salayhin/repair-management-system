@@ -18,10 +18,20 @@
                 <%= f.label 'Name' %>
                 <%= f.text_field :name, class: 'form-control', placeholder: 'Name', required: true %>
               </div>
+
               <div class="form-group">
-                <%= f.label 'Status' %>
-                <%= f.text_field :status, class: 'form-control', placeholder: 'Status', required: true %>
+                <div class="switch">
+                  <div class="onoffswitch">
+                    <%= f.check_box :status, id: 'example1', class: 'onoffswitch-checkbox'  %>
+                    <!--<input type="checkbox" id="example1" class="onoffswitch-checkbox" name="service_center[is_active]" checked="" value="true">-->
+                    <label for="example1" class="onoffswitch-label">
+                      <span class="onoffswitch-inner"></span>
+                      <span class="onoffswitch-switch"></span>
+                    </label>
+                  </div>
+                </div>
               </div>
+
             </div>
           </div>
 
