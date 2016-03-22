@@ -2,7 +2,7 @@
   <h1><%= @device_status.new_record? ? 'New Device Status' : 'Edit Device Status' %></h1>
 
   <div class="row">
-    <div class="col-lg-8">
+    <div class="col-md-8">
       <%= form_for([:admin, @device_status], :html => {role: 'form'}) do |f| %>
 
           <%= render partial: 'shared/errors', :locals => {object: @device_status} %>

@@ -2,7 +2,7 @@
   <h1><%= @service_center.new_record? ? 'New Service Center' : 'Edit Service Center' %></h1>
 
   <div class="row">
-    <div class="col-lg-8">
+    <div class="col-md-8">
       <%= form_for([:admin, @service_center], :html => {role: 'form'}) do |f| %>
 
           <%= render partial: 'shared/errors', :locals => {object: @service_center} %>
@@ -51,7 +51,7 @@
           </div>
       <% end %>
     </div>
-    <div class="col-lg-4">
+    <div class="col-md-4">
       <h3>Other Service Centers</h3>
           <% @service_centers.each do |center| %>
               <div class="widget lazur-bg p-xl">

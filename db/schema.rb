@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160320171937) do
+ActiveRecord::Schema.define(version: 20160322130800) do
 
   create_table "activity_statuses", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -119,9 +119,11 @@ ActiveRecord::Schema.define(version: 20160320171937) do
     t.datetime "updated_at"
     t.string   "provider",               limit: 255
     t.string   "uid",                    limit: 255
+    t.string   "mobile_no",              limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["mobile_no"], name: "index_users_on_mobile_no", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
