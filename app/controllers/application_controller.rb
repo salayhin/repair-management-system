@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include BootstrapFlashHelper
+  before_filter :set_locale
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -21,5 +22,12 @@ class ApplicationController < ActionController::Base
 
   def authenticate_admin_user!
     redirect_to root_path unless current_user.try(:is_admin?) || current_user.try(:is_super_admin?)
+  end
+
+  protected
+
+  def set_locale
+    I18n.locale = session[:locale] || I18n.default_locale
+    session[:locale] = I18n.locale
   end
 end

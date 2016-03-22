@@ -29,5 +29,15 @@ module RailsPack
     Dir.glob("#{Rails.root}/app/assets/images/**/").each do |path|
       config.assets.paths << path
     end
+
+    # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
+    config.i18n.enforce_available_locales = false
+    config.i18n.available_locales = [:en, :bn]
+
+    config.before_configuration do
+      I18n.load_path += Dir[Rails.root.join('config', 'locales', '*.{rb,yml}').to_s]
+      I18n.default_locale = :en
+      I18n.reload!
+    end
   end
 end

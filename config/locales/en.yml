@@ -21,3 +21,45 @@
 
 en:
   hello: "Hello world"
+  sidebar:
+    profile: 'Profile'
+    users:
+      title: 'Users'
+      new: 'Create User'
+      all: 'All Users'
+    service_centers:
+      title: 'Service Centers'
+      new: 'Create Service Center'
+      all: 'All Service Centers'
+    device_brands:
+      title: 'Device Brands'
+      new: 'Create Brand'
+      all: 'All Brands'
+    device_models:
+      title: 'Device Models'
+      new: 'Create Model'
+      all: 'All Models'
+    device_problems:
+      title: 'Device Problems'
+      new: 'Add Problem'
+      all: 'All problems'
+    activity_status:
+      title: 'Activity Status'
+      new: 'Add Activity Status'
+      all: 'All Activity Statuses'
+    device_status:
+      title: 'Device Status'
+      new: 'Add Device Status'
+      all: 'All Device Statuses'
+    final_status:
+      title: 'Final Status'
+      new: 'Add Final Status'
+      all: 'All Final Statuses'
+
+  header:
+    inventory:
+      title: 'Inventory'
+      new: 'Add New Item'
+      all: 'All Items'
+    dashboard: 'Dashboard'
+    logout: 'Logout'

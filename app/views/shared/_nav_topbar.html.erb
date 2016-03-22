@@ -11,22 +11,27 @@
 
 
     <ul class="nav navbar-top-links navbar-right">
+      <li>
+        <%= form_tag local_switcher_home_index_path, :class => 'locale' do %>
+            <%= select_tag 'locale_set', options_for_select(LANGUAGES, I18n.locale.to_s), :onchange => 'this.form.submit()' %>
+        <% end %>
+      </li>
       <% if admins? %>
           <li>
             <span class="m-r-sm text-muted welcome-message">
-              <%= link_to 'DASHBOARD', admin_dashboard_path %>
+              <%= link_to t('header.dashboard'), admin_dashboard_path %>
             </span>
           </li>
 
           <li class="dropdown">
             <a class="dropdown-toggle count-info" data-toggle="dropdown" href="javascript:void(0)">
-              Inventory <i class="fa fa-caret-down"></i>
+              <%= t('header.inventory.title') %> <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-alerts">
               <li>
                 <a href="<%= new_admin_parts_inventory_path %>">
                   <div>
-                    Create New Part
+                    <%= t('header.inventory.new') %>
                   </div>
                 </a>
               </li>
@@ -34,7 +39,7 @@
               <li>
                 <a href="<%= admin_parts_inventories_path %>">
                   <div>
-                    All parts
+                    <%= t('header.inventory.all') %>
                   </div>
                 </a>
               </li>
@@ -45,7 +50,7 @@
 
       <li>
         <%= link_to destroy_user_session_path, :method => 'delete' do %>
-            <i class="fa fa-sign-out"></i> Log out
+            <i class="fa fa-sign-out"></i> <%= t('header.logout') %>
         <% end %>
       </li>
     </ul>

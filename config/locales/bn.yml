@@ -1,0 +1,65 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+bn:
+  hello: "কি খবর বিশ্বের?"
+  sidebar:
+    profile: 'প্রোফাইল'
+    users:
+      title: 'ব্যবহারকারী'
+      new: 'নতুন ব্যবহারকারী'
+      all: 'সকল ব্যবহারকারী'
+    service_centers:
+      title: 'সার্ভিস সেন্টার'
+      new: 'নতুন সার্ভিস সেন্টার'
+      all: 'সকল সার্ভিস সেন্টার'
+    device_brands:
+      title: 'মোবাইল ব্র্যান্ড'
+      new: 'নতুন মোবাইল ব্র্যান্ড'
+      all: 'সকল মোবাইল ব্র্যান্ড'
+    device_models:
+      title: 'মোবাইল মডেল'
+      new: 'নতুন মোবাইল মডেল'
+      all: 'সকল মোবাইল মডেল'
+    device_problems:
+      title: 'মোবাইলের সমস্যা'
+      new: 'নতুন মোবাইল সমস্যা'
+      all: 'সকল মোবাইল সমস্যা'
+    activity_status:
+      title: 'ব্যবহারের অবস্থা'
+      new: 'অবস্থা সংযুক্ত করুন'
+      all: 'ব্যবহারের সকল অবস্থা'
+    device_status:
+      title: 'যন্ত্রের অবস্থা'
+      new: 'অবস্থা যুক্ত করুন'
+      all: 'যন্ত্রের সকল অবস্থা'
+    final_status:
+      title: 'য়ন্ত্রের শেষ অবস্থা'
+      new: 'অবস্থা যুক্ত করুন'
+      all: 'য়ন্ত্রের শেষ অবস্থাসমূহ'
+
+  header:
+    inventory:
+      title: 'মোবাইলের যন্ত্রাংশ'
+      new: 'নতুন যন্ত্রাংশ'
+      all: 'সকল যন্ত্রাংশ'
+    dashboard: 'ড্যাসবোর্ড'
+    logout: 'সাইট ত্যাগ করুন'

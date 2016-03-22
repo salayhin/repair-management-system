@@ -13,9 +13,9 @@
                             <span class="text-muted text-xs block"><%= current_user.roles.first.name %> <b class="caret"></b></span>
                             </span> </a>
           <ul class="dropdown-menu animated fadeInRight m-t-xs">
-            <li><a href="<%= profile_path(current_user.profile) %>">Profile</a></li>
+            <li><a href="<%= profile_path(current_user.profile) %>"><%= t('sidebar.profile') %></a></li>
             <li class="divider"></li>
-            <li><%= link_to 'Logout', destroy_user_session_path, :method => 'delete' %></li>
+            <li><%= link_to t('header.logout'), destroy_user_session_path, :method => 'delete' %></li>
           </ul>
         </div>
 
@@ -25,63 +25,63 @@
       </li>
       <% if admins? %>
           <li>
-            <a href="javascript:;"><i class="fa fa-users"></i> <span class="nav-label">Users</span><span class="fa arrow"></span></a>
+            <a href="javascript:;"><i class="fa fa-users"></i> <span class="nav-label"><%= t('sidebar.users.title') %></span><span class="fa arrow"></span></a>
             <ul class="nav nav-second-level collapse in">
-              <li><a href="<%= new_admin_user_path %>">Create New</a></li>
-              <li><a href="<%= admin_users_path %>">All Users</a></li>
+              <li><a href="<%= new_admin_user_path %>"><%= t('sidebar.users.new') %></a></li>
+              <li><a href="<%= admin_users_path %>"><%= t('sidebar.users.all') %></a></li>
             </ul>
           </li>
       <% end %>
       <li>
-        <a href="javascript:;"><i class="fa fa-plug"></i> <span class="nav-label">Service Centers</span><span class="fa arrow"></span></a>
+        <a href="javascript:;"><i class="fa fa-plug"></i> <span class="nav-label"><%= t('sidebar.service_centers.title') %></span><span class="fa arrow"></span></a>
         <ul class="nav nav-second-level collapse in">
-          <li><a href="<%= new_admin_service_center_path %>">Create New</a></li>
-          <li><a href="<%= admin_service_centers_path %>">All Centers</a></li>
+          <li><a href="<%= new_admin_service_center_path %>"><%= t('sidebar.service_centers.new') %></a></li>
+          <li><a href="<%= admin_service_centers_path %>"><%= t('sidebar.service_centers.all') %></a></li>
         </ul>
       </li>
       <li>
-        <a href="javascript:;"><i class="fa fa-globe"></i> <span class="nav-label">Device Brands</span><span class="fa arrow"></span></a>
+        <a href="javascript:;"><i class="fa fa-globe"></i> <span class="nav-label"><%= t('sidebar.device_brands.title') %></span><span class="fa arrow"></span></a>
         <ul class="nav nav-second-level collapse in">
-          <li><a href="<%= new_admin_device_brand_path %>">Create Brand</a></li>
-          <li><a href="<%= admin_device_brands_path %>">All Brands</a></li>
+          <li><a href="<%= new_admin_device_brand_path %>"><%= t('sidebar.device_brands.new') %></a></li>
+          <li><a href="<%= admin_device_brands_path %>"><%= t('sidebar.device_brands.all') %></a></li>
         </ul>
       </li>
       <li>
-        <a href="javascript:;"><i class="fa fa-tablet"></i> <span class="nav-label">Device Models</span><span class="fa arrow"></span></a>
+        <a href="javascript:;"><i class="fa fa-tablet"></i> <span class="nav-label"><%= t('sidebar.device_models.title') %></span><span class="fa arrow"></span></a>
         <ul class="nav nav-second-level collapse in">
-          <li><a href="<%= new_admin_device_model_path %>">Create Model</a></li>
-          <li><a href="<%= admin_device_models_path %>">All Models</a></li>
+          <li><a href="<%= new_admin_device_model_path %>"><%= t('sidebar.device_models.new') %></a></li>
+          <li><a href="<%= admin_device_models_path %>"><%= t('sidebar.device_models.all') %></a></li>
         </ul>
       </li>
       <li>
-        <a href="javascript:;"><i class="fa fa-bug"></i> <span class="nav-label">Device Problems</span><span class="fa arrow"></span></a>
+        <a href="javascript:;"><i class="fa fa-bug"></i> <span class="nav-label"><%= t('sidebar.device_problems.title') %></span><span class="fa arrow"></span></a>
         <ul class="nav nav-second-level collapse in">
-          <li><a href="<%= new_admin_device_problem_path %>">Create Device Problem</a></li>
-          <li><a href="<%= admin_device_problems_path %>">All Device Problems</a></li>
-        </ul>
-      </li>
-
-      <li>
-        <a href="javascript:;"><i class="fa fa-check"></i> <span class="nav-label">Activity Status</span><span class="fa arrow"></span></a>
-        <ul class="nav nav-second-level collapse in">
-          <li><a href="<%= new_admin_activity_status_path %>">Create Activity Status</a></li>
-          <li><a href="<%= admin_activity_statuses_path %>">All Activity Status</a></li>
+          <li><a href="<%= new_admin_device_problem_path %>"><%= t('sidebar.device_problems.new') %></a></li>
+          <li><a href="<%= admin_device_problems_path %>"><%= t('sidebar.device_problems.all') %></a></li>
         </ul>
       </li>
 
       <li>
-        <a href="javascript:;"><i class="fa fa-signal"></i> <span class="nav-label">Device Status</span><span class="fa arrow"></span></a>
+        <a href="javascript:;"><i class="fa fa-check"></i> <span class="nav-label"><%= t('sidebar.activity_status.title') %></span><span class="fa arrow"></span></a>
         <ul class="nav nav-second-level collapse in">
-          <li><a href="<%= new_admin_device_status_path %>">Create Device Status</a></li>
-          <li><a href="<%= admin_device_statuses_path %>">All Device Status</a></li>
+          <li><a href="<%= new_admin_activity_status_path %>"><%= t('sidebar.activity_status.new') %></a></li>
+          <li><a href="<%= admin_activity_statuses_path %>"><%= t('sidebar.activity_status.all') %></a></li>
         </ul>
       </li>
 
       <li>
-        <a href="javascript:;"><i class="fa fa-tag"></i> <span class="nav-label">Final Status</span><span class="fa arrow"></span></a>
+        <a href="javascript:;"><i class="fa fa-signal"></i> <span class="nav-label"><%= t('sidebar.device_status.title') %></span><span class="fa arrow"></span></a>
         <ul class="nav nav-second-level collapse in">
-          <li><a href="<%= new_admin_final_status_path %>">Create Final Status</a></li>
-          <li><a href="<%= admin_final_statuses_path %>">All Final Status</a></li>
+          <li><a href="<%= new_admin_device_status_path %>"><%= t('sidebar.device_status.new') %></a></li>
+          <li><a href="<%= admin_device_statuses_path %>"><%= t('sidebar.device_status.all') %></a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="javascript:;"><i class="fa fa-tag"></i> <span class="nav-label"><%= t('sidebar.final_status.title') %></span><span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level collapse in">
+          <li><a href="<%= new_admin_final_status_path %>"><%= t('sidebar.final_status.new') %></a></li>
+          <li><a href="<%= admin_final_statuses_path %>"><%= t('sidebar.final_status.all') %></a></li>
         </ul>
       </li>
 
