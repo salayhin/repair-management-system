@@ -43,7 +43,7 @@
                   <% get_roles.each_with_index do |role, indx| %>
                       <label class="radio user-role-radio">
                         <%= f.radio_button :role_id, role.id, :checked => @user.roles.include?(role), id: "optionsRadios#{indx}" %>
-                        <%= role.name %>
+                        <%= role.name == 'Admin' ? 'Manager' : role.name %>
                       </label>
                   <% end %>
                 </div>

@@ -17,7 +17,7 @@ class SessionsController < Devise::SessionsController
       if current_user.role? :super_admin
         format.html {redirect_to admin_dashboard_path}
       else
-        format.html {redirect_to session.has_key?(:return_url) ? session.delete(:return_url) : root_path}
+        format.html {redirect_to session.has_key?(:return_url) ? session.delete(:return_url) : admin_dashboard_path}
       end
     end
   end

@@ -63,3 +63,12 @@ en:
       all: 'All Items'
     dashboard: 'Dashboard'
     logout: 'Logout'
+
+  signin:
+    tagline: 'Welcome to Electra Mobile Repair Shop'
+    instruction: 'Enter your email and password.'
+    help: 'Contact support team for your user creation.'
+    back: 'Back to Home page'
+    btn: 'Login'
+    mobile: 'Mobile No.'
+    pw: 'Password'

@@ -15,31 +15,37 @@
 <body class="gray-bg">
 
 <div class="loginColumns animated fadeInDown">
+  <div class="row pull-right margin-bottom">
+    <%= form_tag local_switcher_home_index_path, :class => 'locale' do %>
+        <%= select_tag 'locale_set', options_for_select(LANGUAGES, I18n.locale.to_s), :onchange => 'this.form.submit()' %>
+    <% end %>
+  </div>
+
   <div class="row">
 
     <div class="col-md-6">
-      <h2 class="font-bold">Welcome to Electra Mobile Repair Shop</h2>
+      <h2 class="font-bold"><%= t('signin.tagline') %></h2>
 
       <p>
-        Enter your email and password.
+        <%= t('signin.instruction') %>
       </p>
 
       <p>
-        Contact support team for your user creation.
+        <%= t('signin.help') %>
       </p>
-      <%= link_to 'Back to HOME', root_path %>
+      <%= link_to t('signin.back'), root_path %>
 
     </div>
     <div class="col-md-6">
       <div class="ibox-content">
         <%= form_for resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'regForm m-t', :method => :post} do |f| %>
           <div class="form-group">
-            <%= f.text_field :mobile_no, class: 'form-control', :placeholder => 'Mobile No', :size => '12' %>
+            <%= f.text_field :mobile_no, class: 'form-control', :placeholder => t('signin.mobile'), :size => '12' %>
           </div>
           <div class="form-group">
-            <%= f.password_field :password, class: 'form-control', autocomplete: 'off', :placeholder => 'Password', :size => '50' %>
+            <%= f.password_field :password, class: 'form-control', autocomplete: 'off', :placeholder => t('signin.pw'), :size => '50' %>
           </div>
-            <%= f.submit 'Submit', class:'btn btn-primary block full-width m-b', :value => 'Login' %>
+            <%= f.submit 'Submit', class:'btn btn-primary block full-width m-b', :value => t('signin.btn') %>
 
           <!--<a href="login_two_columns.html#">-->
             <!--<small>Forgot password?</small>-->
