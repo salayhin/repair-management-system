@@ -21,6 +21,11 @@ Rails.application.routes.draw do
              }
 
   resources :profiles, only: [:show, :edit, :update]
+  resources :repair_orders, path: 'repair-orders' do
+    collection do
+      get :device_models
+    end
+  end
 
   root 'home#index'
 

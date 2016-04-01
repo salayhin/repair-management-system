@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :roles
   has_one :profile, :dependent => :destroy
+  has_many :repair_orders, foreign_key: 'creator_id'
 
   after_save :create_public_profile
   # Include default devise modules. Others available are:
@@ -23,6 +24,10 @@ class User < ActiveRecord::Base
 
   def is_super_admin?
     self.role?(:super_admin)
+  end
+
+  def is_receptionist?
+    self.role?(:receptionist)
   end
 
   def self.from_omniauth(access_token)

@@ -75,3 +75,31 @@ body{
   .onoffswitch{width: 70px}
   .onoffswitch-switch{right: 52px}
 }
+.switch .onoffswitch{
+  #example11 .of-lab-11{
+    .onoffswitch-inner:before {
+      content: "Warranty";
+    }
+    .onoffswitch-inner:after {
+      content: "No-warranty";
+    }
+    .onoffswitch{width: 70px}
+    .onoffswitch-switch{right: 52px}
+  }
+  #example12 .of-lab-12{
+    .onoffswitch-inner:before {
+      content: "Full-Boxed";
+    }
+    .onoffswitch-inner:after {
+      content: "No Box";
+    }
+    .onoffswitch{width: 70px}
+    .onoffswitch-switch{right: 52px}
+  }
+}
+.loop-chk-b {
+  font-family: Lucida Console;
+  font-size: 14px;
+  font-weight: normal;
+  margin-bottom: 0;
+}

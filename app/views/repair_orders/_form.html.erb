@@ -1,0 +1,186 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+  <h1><%= @repair_order.new_record? ? t('repair_order.new') : t('repair_order.edit') %></h1>
+
+  <div class="row">
+    <%= form_for(@repair_order, :html => {class: '', role: 'form', multipart: true}) do |f| %>
+        <div class="col-md-7">
+
+          <%= render partial: 'shared/errors', :locals => {object: @repair_order} %>
+
+          <div class="ibox float-e-margins">
+            <div class="ibox-title">
+              <h5><%= t('repair_order.header') %></h5>
+            </div>
+
+            <div class="ibox-content">
+
+              <div class="form-group">
+                <%= f.label t('repair_order.service_center'), class: 'sr-only' %>
+                <%= f.select :service_center_id,
+                             options_for_select(all_service_centers.collect { |sc| [sc.name, sc.id] },
+                                                @repair_order.service_center_id),
+                             {prompt: t('repair_order.service_center_prompt')},
+                             {required: 'true', class: 'form-control m-b'}
+                %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label t('repair_order.device_brand'), class: 'sr-only' %>
+                <%= f.select :device_brand_id,
+                             options_for_select(all_device_brands.collect { |brand| [brand.name, brand.id] },
+                                                @repair_order.device_brand_id),
+                             {prompt: t('repair_order.device_brand_prompt')},
+                             {required: 'true', class: 'form-control m-b'}
+                %>
+              </div>
+
+              <div id="job-model-selection">
+                <div class="device-brand-models-dd">
+                    <% unless @repair_order.new_record? %>
+                        <%= render :partial => 'repair_orders/device_models', :locals => {:order => @repair_order, :brand => @repair_order.device_brand} %>
+                    <% end %>
+                </div>
+              </div>
+
+              <div class="form-group" id="device-purchase-datepicker">
+                <%#= f.label t('repair_order.purchase_date'), class: 'sr-only' %>
+                <%= f.text_field :purchase_date, class: 'form-control', id: 'dateP', placeholder: t('repair_order.purchase_date') %>
+              </div>
+
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-6">
+                    <%= label_tag t('repair_order.warranty') %>
+                    <div class="switch">
+                      <div class="onoffswitch">
+                        <%= f.check_box :warranty, id: 'example11', class: 'onoffswitch-checkbox'  %>
+                        <label for="example11" class="onoffswitch-label of-lab-11">
+                          <span class="onoffswitch-inner"></span>
+                          <span class="onoffswitch-switch"></span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <%= label_tag t('repair_order.full_boxed') %>
+                    <div class="switch">
+                      <div class="onoffswitch">
+                        <%= f.check_box :full_boxed, id: 'example12', class: 'onoffswitch-checkbox'  %>
+                        <label for="example12" class="onoffswitch-label of-lab-12">
+                          <span class="onoffswitch-inner"></span>
+                          <span class="onoffswitch-switch"></span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <%= f.label t('repair_order.dealer'), class: 'sr-only' %>
+                <%= f.text_field :dealer, class: 'form-control', placeholder: t('repair_order.dealer') %>
+              </div>
+
+              <div class="form-group hashable-attributes">
+                <div class="row">
+                  <div class="col-md-6">
+                    <%= label_tag t('repair_order.accessory') %><br>
+                    <% RepairOrder::ACCESORIES.each_pair do |accessory_k, accessory_v| %>
+                        <%= check_box_tag "repair_order[accessories_present][#{accessory_k}]" %>
+                        <label class="loop-chk-b"><%= accessory_v %></label><br>
+                    <% end %>
+                  </div>
+                  <div class="col-md-6">
+                    <%= label_tag t('repair_order.condition') %><br>
+                    <% RepairOrder::DEVICE_CONDITIONS.each_pair do |condition_k, condition_v| %>
+                        <%= check_box_tag "repair_order[device_condition][#{condition_k}]" %>
+                        <label class="loop-chk-b"><%= condition_v %></label><br>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <%= f.label t('repair_order.remarks'), class: 'sr-only' %>
+                <%= f.text_area :remarks, class: 'form-control', placeholder: t('repair_order.remarks'), rows: '3' %>
+              </div>
+
+              <div class="form-group" id="device-delivery-datepicker">
+                <%= f.text_field :delivery_date, class: 'form-control', id: 'dateD', placeholder: t('repair_order.delivery_date') %>
+                <%= label_tag t('repair_order.delivery_text'), t('repair_order.delivery_text'), class: 'alert alert-info' %>
+              </div>
+
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-2">
+                    <%= label_tag t('repair_order.invoice') %>
+                  </div>
+                  <div class="col-md-10">
+                    <%= f.file_field :invoice, class: '', placeholder: t('repair_order.invoice') %>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="actions form-group">
+            <%= f.submit @repair_order.new_record? ? t('repair_order.create') : t('repair_order.update'), class: 'btn btn-sm btn-primary pull-left m-t-n-xs' %>
+            <%= link_to t('repair_order.back'), repair_orders_path, class: 'btn btn-sm btn-white m-t-n-xs margin-left' %>
+          </div>
+        </div>
+
+        <div class="col-md-5">
+          <div class="ibox float-e-margins">
+            <div class="ibox-title">
+              <h5><%= t('repair_order.customer.header') %></h5>
+            </div>
+
+            <div class="ibox-content">
+
+              <div class="form-group">
+                <%= f.label t('repair_order.customer.name'), class: 'sr-only' %>
+                <%= f.text_field :customer_name, class: 'form-control', placeholder: t('repair_order.customer.name'), required: true %>
+              </div>
+              <div class="form-group">
+                <%= f.label t('repair_order.customer.email'), class: 'sr-only' %>
+                <%= f.email_field :customer_email, class: 'form-control', placeholder: t('repair_order.customer.email'), required: true %>
+              </div>
+              <div class="form-group">
+                <%= f.label t('repair_order.customer.phone'), class: 'sr-only' %>
+                <%= f.text_field :customer_contact_no, class: 'form-control', placeholder: t('repair_order.customer.phone'), required: true %>
+              </div>
+              <div class="form-group">
+                <%= f.label t('repair_order.customer.address'), class: 'sr-only' %>
+                <%= f.text_area :customer_address, class: 'form-control', placeholder: t('repair_order.customer.address'), rows: '2' %>
+              </div>
+
+            </div>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>
+
+<script>
+    $("#repair_order_device_brand_id").change(function () {
+        var category_name = $("#repair_order_device_brand_id").find("option:selected").text(),
+                select_label = "<%= t("repair_order.device_brand_prompt")%>",
+                order_id = '<%= @repair_order.new_record? ? '' : @repair_order.id %>';
+        if (category_name != select_label) {
+            $(".device-brand-models-dd").show();
+            $.ajax({
+                url: "<%= device_models_repair_orders_path %>",
+                data: {brand_id: this.value, order_id: order_id},
+                method: "get"
+            })
+        } else {
+            $(".device-brand-models-dd").hide();
+        }
+
+    });
+    $(function() {
+        $('#device-purchase-datepicker #dateP').datepicker();
+        $('#device-delivery-datepicker #dateD').datepicker();
+    });
+</script>

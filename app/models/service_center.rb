@@ -3,6 +3,7 @@
 class ServiceCenter < ActiveRecord::Base
   # associations
   has_many :profiles
+  has_many :repair_orders, :dependent => :destroy
 
   # validations
   validates_presence_of :name, :address, :phone

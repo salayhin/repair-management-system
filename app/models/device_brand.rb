@@ -4,6 +4,7 @@ class DeviceBrand < ActiveRecord::Base
 
   # associations
   has_many :device_models, :dependent => :destroy
+  has_many :repair_orders, :dependent => :destroy
 
   # validations
   validates_presence_of :name

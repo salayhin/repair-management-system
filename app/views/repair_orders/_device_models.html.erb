@@ -1,0 +1,21 @@
+<div class="form-group">
+  <%= label_tag t('repair_order.device_model'), {}, class: 'sr-only' %>
+  <%= select_tag "repair_order[device_model_id]",
+                 options_for_select(brand.device_models.collect { |dm| [dm.name,  dm.id] },
+                                    :selected => order.nil? ? '' : order.device_model_id),
+                                    :prompt => "#{t('repair_order.device_model_prompt')}",
+                                    :class => "form-control m-b"
+  %>
+</div>
+
+<div class="form-group">
+  <%= label_tag t('repair_order.device_brand'), {}, class: 'sr-only' %>
+  <%= text_field_tag "repair_order[imei1]", order.nil? ? '' : order.imei1 ,
+                     class: 'form-control', placeholder: t('repair_order.imei1') %>
+</div>
+
+<div class="form-group">
+  <%= label_tag t('repair_order.device_brand'), {}, class: 'sr-only' %>
+  <%= text_field_tag "repair_order[imei2]", order.nil? ? '' : order.imei2 ,
+                     class: 'form-control', placeholder: t('repair_order.imei2') %>
+</div>
