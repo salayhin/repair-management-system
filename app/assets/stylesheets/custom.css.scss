@@ -74,27 +74,27 @@ body{
   }
   .onoffswitch{width: 70px}
   .onoffswitch-switch{right: 52px}
-}
-.switch .onoffswitch{
-  #example11 .of-lab-11{
-    .onoffswitch-inner:before {
-      content: "Warranty";
+  .repair-order-form{
+    .switch .onoffswitch{
+      .of-lab-11{
+        .onoffswitch-inner:before {
+          content: "Warranty";
+        }
+        .onoffswitch-inner:after {
+          content: "No-warranty";
+        }
+      }
+      .of-lab-12{
+        .onoffswitch-inner:before {
+          content: "Full-Boxed";
+        }
+        .onoffswitch-inner:after {
+          content: "No Box";
+        }
+      }
     }
-    .onoffswitch-inner:after {
-      content: "No-warranty";
-    }
-    .onoffswitch{width: 70px}
-    .onoffswitch-switch{right: 52px}
-  }
-  #example12 .of-lab-12{
-    .onoffswitch-inner:before {
-      content: "Full-Boxed";
-    }
-    .onoffswitch-inner:after {
-      content: "No Box";
-    }
-    .onoffswitch{width: 70px}
-    .onoffswitch-switch{right: 52px}
+    .onoffswitch{width: 100px}
+    .onoffswitch-switch{right: 82px}
   }
 }
 .loop-chk-b {
@@ -102,4 +102,17 @@ body{
   font-size: 14px;
   font-weight: normal;
   margin-bottom: 0;
+}
+#ui-datepicker-div{
+  z-index: 9999 !important;
+}
+#device-delivery-datepicker {
+  .alert{
+    padding: 5px 10px 5px 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+.labl-wrap{
+  margin: 5px 0;
 }

@@ -46,6 +46,29 @@
             </ul>
           </li>
 
+          <li class="dropdown">
+            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="javascript:void(0)">
+              <%= t('repair_order.title') %> <i class="fa fa-caret-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-alerts">
+              <li>
+                <a href="<%= new_repair_order_path %>">
+                  <div>
+                    <%= t('repair_order.new') %>
+                  </div>
+                </a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a href="<%= repair_orders_path %>">
+                  <div>
+                    <%= t('repair_order.all') %>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </li>
+
       <% end %>
 
       <li>

@@ -1,4 +1,4 @@
-<div class="wrapper wrapper-content animated fadeInRight">
+<div class="wrapper wrapper-content animated fadeInRight repair-order-form">
   <h1><%= @repair_order.new_record? ? t('repair_order.new') : t('repair_order.edit') %></h1>
 
   <div class="row">
@@ -43,8 +43,14 @@
               </div>
 
               <div class="form-group" id="device-purchase-datepicker">
-                <%#= f.label t('repair_order.purchase_date'), class: 'sr-only' %>
-                <%= f.text_field :purchase_date, class: 'form-control', id: 'dateP', placeholder: t('repair_order.purchase_date') %>
+                <div class="row">
+                  <div class="col-md-3">
+                    <%= label_tag t('repair_order.purchase_date'), t('repair_order.purchase_date'), class: 'labl-wrap' %>
+                  </div>
+                  <div class="col-md-9">
+                    <%= f.text_field :purchase_date, class: 'form-control', id: 'dateP', placeholder: t('repair_order.purchase_date') %>
+                  </div>
+                </div>
               </div>
 
               <div class="form-group">
@@ -77,8 +83,14 @@
               </div>
 
               <div class="form-group">
-                <%= f.label t('repair_order.dealer'), class: 'sr-only' %>
-                <%= f.text_field :dealer, class: 'form-control', placeholder: t('repair_order.dealer') %>
+                <div class="row">
+                  <div class="col-md-3">
+                    <%= label_tag t('repair_order.dealer'), t('repair_order.dealer'), class: 'labl-wrap' %>
+                  </div>
+                  <div class="col-md-9">
+                    <%= f.text_field :dealer, class: 'form-control', placeholder: t('repair_order.dealer'), required: true %>
+                  </div>
+                </div>
               </div>
 
               <div class="form-group hashable-attributes">
@@ -106,7 +118,14 @@
               </div>
 
               <div class="form-group" id="device-delivery-datepicker">
-                <%= f.text_field :delivery_date, class: 'form-control', id: 'dateD', placeholder: t('repair_order.delivery_date') %>
+                <div class="row">
+                  <div class="col-md-3">
+                    <%= label_tag t('repair_order.delivery_date'), t('repair_order.delivery_date'), class: 'labl-wrap' %>
+                  </div>
+                  <div class="col-md-9">
+                    <%= f.text_field :delivery_date, class: 'form-control', id: 'dateD', placeholder: t('repair_order.delivery_date') %>
+                  </div>
+                </div>
                 <%= label_tag t('repair_order.delivery_text'), t('repair_order.delivery_text'), class: 'alert alert-info' %>
               </div>
 
@@ -180,7 +199,15 @@
 
     });
     $(function() {
-        $('#device-purchase-datepicker #dateP').datepicker();
-        $('#device-delivery-datepicker #dateD').datepicker();
+        $('#device-purchase-datepicker #dateP').datepicker({
+            changeYear: true,
+            changeMonth: true,
+            dateFormat: "dd-mm-yy"
+        });
+        $('#device-delivery-datepicker #dateD').datepicker({
+            changeYear: true,
+            changeMonth: true,
+            dateFormat: "dd-mm-yy"
+        });
     });
 </script>

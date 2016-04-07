@@ -1,7 +1,8 @@
 class RepairOrder < ActiveRecord::Base
 
   # class methods
-  serialize :device_condition, :accessories_present
+  serialize :device_condition, Hash
+  serialize :accessories_present, Hash
 
   # associations
   belongs_to :device_brand

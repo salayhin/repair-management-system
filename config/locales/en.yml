@@ -77,6 +77,8 @@ en:
     title: 'Device Servicing Order'
     new: 'New Servicing Order'
     edit: 'Edit Servicing Order'
+    all: 'All Servicing Orders'
+    my_jobs: 'My Servicing Orders'
     header: 'Servicing Order Information'
     device_model: 'Device Model'
     device_model_prompt: 'Select Device Model'
