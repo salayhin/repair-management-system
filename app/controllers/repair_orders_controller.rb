@@ -7,16 +7,22 @@ class RepairOrdersController < ApplicationController
   # GET /repair_orders
   # GET /repair_orders.json
   def index
-    @repair_orders = RepairOrder.all
+    if current_user.is_super_admin?
+      @repair_orders = RepairOrder.all
+    else
+      @repair_orders = current_user.profile.service_center.repair_orders
+    end
   end
 
   # GET /repair_orders/1
   # GET /repair_orders/1.json
   def show
+    @repair_order = RepairOrder.includes(:device_model, :device_brand, :service_center).find(params[:id])
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: "invoice"   # Excluding ".pdf" extension.
+        render pdf: "invoice",
+               template: 'repair_orders/show.pdf.erb'
       end
     end
   end
@@ -28,6 +34,7 @@ class RepairOrdersController < ApplicationController
 
   # GET /repair_orders/1/edit
   def edit
+    redirect_to repair_orders_path if current_user != @repair_order.creator
   end
 
   # POST /repair_orders
@@ -87,7 +94,7 @@ class RepairOrdersController < ApplicationController
     params.require(:repair_order).permit(:device_brand_id, :device_model_id, :service_center_id, :imei1, :imei2,
                                          :purchase_date, :warranty, :customer_name, :customer_contact_no,
                                          :customer_email, :customer_address, :dealer, :full_boxed, :remarks,
-                                         :device_condition, :accessories_present, :invoice, :delivery_date
+                                         :invoice, :delivery_date, :device_condition => [], :accessories_present => []
     )
   end
 

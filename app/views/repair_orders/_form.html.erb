@@ -98,14 +98,16 @@
                   <div class="col-md-6">
                     <%= label_tag t('repair_order.accessory') %><br>
                     <% RepairOrder::ACCESORIES.each_pair do |accessory_k, accessory_v| %>
-                        <%= check_box_tag "repair_order[accessories_present][#{accessory_k}]" %>
+                        <%= check_box_tag "repair_order[accessories_present][]", accessory_k,
+                                          @repair_order.accessories_present.include?(accessory_k.to_s) %>
                         <label class="loop-chk-b"><%= accessory_v %></label><br>
                     <% end %>
                   </div>
                   <div class="col-md-6">
                     <%= label_tag t('repair_order.condition') %><br>
                     <% RepairOrder::DEVICE_CONDITIONS.each_pair do |condition_k, condition_v| %>
-                        <%= check_box_tag "repair_order[device_condition][#{condition_k}]" %>
+                        <%= check_box_tag "repair_order[device_condition][]", condition_k,
+                                          @repair_order.device_condition.include?(condition_k.to_s) %>
                         <label class="loop-chk-b"><%= condition_v %></label><br>
                     <% end %>
                   </div>

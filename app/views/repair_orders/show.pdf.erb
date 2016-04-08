@@ -12,7 +12,102 @@
 <body>
 <div class="container-fluid">
   <div class="container main-body">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="wrapper wrapper-content animated fadeInRight">
+          <div class="ibox-content p-xl">
+            <div class="row">
+              <div class="col-sm-6">
+                <h5>From:</h5>
+                <address>
+                  <strong>Electra Servicing Center</strong><br>
+                  <%= @repair_order.service_center.name %><br>
+                  <%= @repair_order.service_center.address %><br>
+                  <abbr title="Phone">P:</abbr> <%= @repair_order.service_center.phone %>
+                </address>
+              </div>
 
+              <div class="col-sm-6 text-right">
+                <h4>Invoice No.</h4>
+                <h4 class="text-navy">INV-000567F7-00</h4>
+                <span>To:</span>
+                <address>
+                  <strong><%= @repair_order.customer_name %></strong><br>
+                  <%= @repair_order.customer_address %><br>
+                  <%= @repair_order.customer_email %><br>
+                  <abbr title="Phone">P:</abbr> <%= @repair_order.customer_contact_no %>
+                </address>
+                <p>
+                  <span><strong>Invoice Date:</strong> <%= @repair_order.created_at.strftime('%v') %></span><br>
+                  <span><strong>Due Date:</strong> <%= @repair_order.delivery_date.strftime('%v') %></span>
+                </p>
+              </div>
+            </div>
+
+            <div class="table-responsive m-t">
+              <table class="table invoice-table">
+                <thead>
+                <tr>
+                  <th>Device</th>
+                  <th>IMEI-1</th>
+                  <th>Device Condition</th>
+                  <th>Accessories</th>
+                  <th>Dealer</th>
+                  <th>Warranty</th>
+                  <!--<th>Total Price</th>-->
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td><div><strong><%= @repair_order.device_model.name %></strong></div>
+                    <small>Product of: <%= @repair_order.device_brand.name %></small></td>
+                  <td><%= @repair_order.imei1 %></td>
+                  <td>
+                    <% @repair_order.device_condition.each do |con| %>
+                        <%= RepairOrder::DEVICE_CONDITIONS[con.to_i] %><br>
+                    <% end %>
+                  </td>
+                  <td>
+                    <% @repair_order.accessories_present.each do |acc| %>
+                        <%= RepairOrder::ACCESORIES[acc.to_i] %><br>
+                    <% end %>
+                  </td>
+                  <td><%= @repair_order.dealer %></td>
+                  <td><%= @repair_order.warranty ? 'Warranty present' : 'Warranty NOT present' %></td>
+                </tr>
+
+                </tbody>
+              </table>
+            </div><!-- /table-responsive -->
+
+            <!--<table class="table invoice-total">-->
+            <!--<tbody>-->
+            <!--<tr>-->
+            <!--<td><strong>Sub Total :</strong></td>-->
+            <!--<td>$1026.00</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+            <!--<td><strong>TAX :</strong></td>-->
+            <!--<td>$235.98</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+            <!--<td><strong>TOTAL :</strong></td>-->
+            <!--<td>$1261.98</td>-->
+            <!--</tr>-->
+            <!--</tbody>-->
+            <!--</table>-->
+            <!--<div class="text-right">-->
+            <!--<button class="btn btn-primary"><i class="fa fa-dollar"></i> Make A Payment</button>-->
+            <!--</div>-->
+            <% if @repair_order.remarks.present? %>
+                <div class="well m-t"><strong>Comments</strong>
+                  <%= @repair_order.remarks %>
+                </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -20,5 +115,28 @@
 </html>
 
 <style>
-  /*add custom page styles*/
+    /* INVOICE */
+    .invoice-table tbody > tr > td:last-child,
+    .invoice-table tbody > tr > td:nth-child(4),
+    .invoice-table tbody > tr > td:nth-child(3),
+    .invoice-table tbody > tr > td:nth-child(2) {
+        text-align: right;
+    }
+    .invoice-table thead > tr > th:last-child,
+    .invoice-table thead > tr > th:nth-child(4),
+    .invoice-table thead > tr > th:nth-child(3),
+    .invoice-table thead > tr > th:nth-child(2) {
+        text-align: right;
+    }
+    .invoice-total > tbody > tr > td:first-child {
+        text-align: right;
+    }
+    .invoice-total > tbody > tr > td {
+        border: 0 none;
+    }
+    .invoice-total > tbody > tr > td:last-child {
+        border-bottom: 1px solid #DDDDDD;
+        text-align: right;
+        width: 15%;
+    }
 </style>
