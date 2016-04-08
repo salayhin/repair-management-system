@@ -30,6 +30,7 @@ class RepairOrdersController < ApplicationController
   # GET /repair_orders/new
   def new
     @repair_order = RepairOrder.new
+    @repair_assignment = @repair_order.repair_assignments.build
   end
 
   # GET /repair_orders/1/edit
@@ -87,6 +88,7 @@ class RepairOrdersController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_repair_order
     @repair_order = RepairOrder.find(params[:id])
+    @repair_assignment = @repair_order.repair_assignments.where(:transferred_job => false).last
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
@@ -94,7 +96,8 @@ class RepairOrdersController < ApplicationController
     params.require(:repair_order).permit(:device_brand_id, :device_model_id, :service_center_id, :imei1, :imei2,
                                          :purchase_date, :warranty, :customer_name, :customer_contact_no,
                                          :customer_email, :customer_address, :dealer, :full_boxed, :remarks,
-                                         :invoice, :delivery_date, :device_condition => [], :accessories_present => []
+                                         :invoice, :delivery_date, :device_condition => [], :accessories_present => [],
+                                         :repair_assignments_attributes => [:assigner_id, :assigned_id, :transferred_job, :id]
     )
   end
 

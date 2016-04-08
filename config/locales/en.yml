@@ -107,3 +107,6 @@ en:
     delivery_text: 'This is an approximate date for delivery. Due to technical issues the date may vary.'
     warranty: 'Warranty has?'
     back: 'Back'
+    assignment:
+      title: 'Assign this job to a employee'
+      select_text: 'Select Technician'

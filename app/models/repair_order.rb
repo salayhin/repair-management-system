@@ -9,6 +9,8 @@ class RepairOrder < ActiveRecord::Base
   belongs_to :device_model
   belongs_to :service_center
   belongs_to :creator, :class_name => 'User'
+  has_many :repair_assignments, :dependent => :destroy
+  accepts_nested_attributes_for :repair_assignments
 
   # uploads
   mount_uploader :invoice, OrderInvoiceUploader

@@ -99,7 +99,7 @@
                     <%= label_tag t('repair_order.accessory') %><br>
                     <% RepairOrder::ACCESORIES.each_pair do |accessory_k, accessory_v| %>
                         <%= check_box_tag "repair_order[accessories_present][]", accessory_k,
-                                          @repair_order.accessories_present.include?(accessory_k.to_s) %>
+                                           @repair_order.accessories_present.present? ? @repair_order.accessories_present.include?(accessory_k.to_s) : false %>
                         <label class="loop-chk-b"><%= accessory_v %></label><br>
                     <% end %>
                   </div>
@@ -107,7 +107,7 @@
                     <%= label_tag t('repair_order.condition') %><br>
                     <% RepairOrder::DEVICE_CONDITIONS.each_pair do |condition_k, condition_v| %>
                         <%= check_box_tag "repair_order[device_condition][]", condition_k,
-                                          @repair_order.device_condition.include?(condition_k.to_s) %>
+                                          @repair_order.accessories_present.present? ? @repair_order.device_condition.include?(condition_k.to_s) : false %>
                         <label class="loop-chk-b"><%= condition_v %></label><br>
                     <% end %>
                   </div>
@@ -176,6 +176,26 @@
                 <%= f.text_area :customer_address, class: 'form-control', placeholder: t('repair_order.customer.address'), rows: '2' %>
               </div>
 
+            </div>
+          </div>
+          <div class="ibox float-e-margins">
+            <div class="ibox-title">
+              <h5><%= t('repair_order.assignment.title') %></h5>
+            </div>
+
+            <div class="ibox-content">
+              <%= f.fields_for :repair_assignments do |ff| %>
+                  <div class="form-group">
+                    <%= ff.select :assigned_id,
+                                 options_for_select(service_center_employees.collect { |sc| [sc.full_name, sc.user.id] },
+                                                    @repair_assignment.assigned_id),
+                                 {prompt: t('repair_order.assignment.select_text')},
+                                 {required: 'true', class: 'form-control m-b'}
+                    %>
+                    <%= ff.hidden_field :assigner_id, value: current_user.id  %>
+                    <%= ff.hidden_field :transferred_job, value: false  %>
+                  </div>
+              <% end %>
             </div>
           </div>
         </div>

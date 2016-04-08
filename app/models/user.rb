@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :roles
   has_one :profile, :dependent => :destroy
   has_many :repair_orders, foreign_key: 'creator_id'
+  has_many :assigners, :class_name => "RepairAssignment", :foreign_key => :assigner_id
+  has_many :assignees, :class_name => "RepairAssignment", :foreign_key => :assigned_id
 
   after_save :create_public_profile
   # Include default devise modules. Others available are:
