@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :service_centers
     resources :device_problems
     resources :activity_statuses
-    resources :device_statuses
+    # resources :device_statuses
     resources :final_statuses
     resources :parts_inventories
   end
