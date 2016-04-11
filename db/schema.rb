@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160408101417) do
+ActiveRecord::Schema.define(version: 20160411143634) do
 
   create_table "activity_statuses", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -69,6 +69,11 @@ ActiveRecord::Schema.define(version: 20160408101417) do
     t.datetime "updated_at",                                     null: false
   end
 
+  create_table "parts_inventories_repair_informations", id: false, force: :cascade do |t|
+    t.integer "parts_inventory_id",    limit: 4, null: false
+    t.integer "repair_information_id", limit: 4, null: false
+  end
+
   create_table "profiles", force: :cascade do |t|
     t.integer  "user_id",           limit: 4
     t.string   "first_name",        limit: 255
@@ -89,6 +94,16 @@ ActiveRecord::Schema.define(version: 20160408101417) do
     t.text     "comment",         limit: 65535
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
+  end
+
+  create_table "repair_informations", force: :cascade do |t|
+    t.integer  "repair_order_id",      limit: 4
+    t.integer  "repair_assignment_id", limit: 4
+    t.integer  "activity_status_id",   limit: 4
+    t.integer  "final_status_id",      limit: 4
+    t.boolean  "deliverable",                    default: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
   end
 
   create_table "repair_orders", force: :cascade do |t|

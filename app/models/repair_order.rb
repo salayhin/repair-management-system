@@ -10,6 +10,7 @@ class RepairOrder < ActiveRecord::Base
   belongs_to :service_center
   belongs_to :creator, :class_name => 'User'
   has_many :repair_assignments, :dependent => :destroy
+  has_one :repair_information, :dependent => :destroy
   accepts_nested_attributes_for :repair_assignments
 
   # uploads
@@ -44,10 +45,16 @@ class RepairOrder < ActiveRecord::Base
   }
 
   # callbacks
+  after_update :construct_repair_information
 
   # scopes
 
   # instance methods
 
+  def construct_repair_information
+    if self.repair_assignments.present?
+      self.create_repair_information(:repair_assignment_id => self.repair_assignments.last.id)
+    end
+  end
 
 end

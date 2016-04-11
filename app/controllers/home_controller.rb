@@ -10,6 +10,12 @@ class HomeController < ApplicationController
     end
   end
 
+  def parts_names
+    results = PartsInventory.where("name LIKE ?", "#{params[:search_key]}%").limit(5)
+    results = results.select("id,name")
+    render :json => results.to_json
+  end
+
   private
   def set_session_and_redirect
     session[:locale] = I18n.locale

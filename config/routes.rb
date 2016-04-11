@@ -27,11 +27,13 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :repair_informations, only: [:create, :update, :show]
   root 'home#index'
 
   resources :home do
     collection do
       post :local_switcher
+      get :parts_names
     end
   end
 

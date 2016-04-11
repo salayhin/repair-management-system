@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require bootstrap.min
 //= require turbolinks
+//= require jquery.tokeninput
 
 // Don't remove thoose comments. We need to keep this order.
 ////= require plugins/metisMenu/jquery.metisMenu

@@ -1,0 +1,17 @@
+<%= f.fields_for :repair_assignment do |ff| %>
+    <div class="row">
+      <div class="col-sm-6">
+        <%= ff.select :assigned_id,
+                      options_for_select(service_center_employees.collect { |sc| [sc.full_name, sc.user.id] }),
+                      {prompt: t('repair_order.assignment.select_text')},
+                      {class: 'form-control m-b'}
+        %>
+      </div>
+      <div class="col-sm-6">
+        <%= ff.text_area :comment, class: 'form-control', rows: '2', placeholder: t('repair_order.information.links.comment')  %>
+      </div>
+    </div>
+    <%= ff.hidden_field :assigner_id, value: current_user.id  %>
+    <%= ff.hidden_field :transferred_job, value: true  %>
+    <%= ff.hidden_field :repair_job_id, value: info.repair_order_id  %>
+<% end %>

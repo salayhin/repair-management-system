@@ -110,3 +110,25 @@ en:
     assignment:
       title: 'Assign this job to a employee'
       select_text: 'Select Technician'
+    information:
+      status:
+        header: 'Current repair status'
+        activity: 'Activity Status'
+        activity_text: 'Current working status of the job'
+        select_activity: 'select activity status'
+        final: 'Final Status'
+        final_text: 'Final status of the job'
+        select_final: 'select final status'
+      links:
+        deliver: ' Deliver the job'
+        deliver_text: 'Click the link to deliver the job'
+        transfer: 'Transfer job'
+        transfer_text: 'Transfer the job to fellow Technician'
+        add_parts: 'Add parts'
+        add_parts_text: 'Add parts from inventory'
+        add_new_btn: 'Add new part'
+        remove_btn: 'Remove the part'
+        operations: 'Advance operations'
+        comment: 'Write comment'
+        update: 'Update Repair Information'
+        search_hint: 'Type parts name to add'

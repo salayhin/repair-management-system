@@ -1,0 +1,128 @@
+<%= form_for(repair_info, :method => :put, html: {class: 'form-horizontal'}) do |f| %>
+    <div class="wrapper wrapper-content animated fadeInRight">
+      <div class="row">
+        <div class="col-md-5">
+          <div class="ibox float-e-margins">
+            <div class="ibox-title">
+              <h5><%= t('repair_order.information.status.header') %></h5>
+            </div>
+            <div class="ibox-content">
+              <!--<form class="form-horizontal">-->
+                <div class="form-group">
+                  <label class="col-md-2 control-label"><%= t('repair_order.information.status.activity') %></label>
+
+                  <div class="col-md-10">
+                    <%= f.select :activity_status_id,
+                                 options_for_select(all_activity_status.collect { |as| [as.name, as.id] },
+                                                    repair_info.activity_status_id),
+                                 {prompt: t('repair_order.information.status.select_activity')},
+                                 {required: 'true', class: 'form-control m-b'}
+                    %>
+                    <span class="help-block m-b-none del-help"><%= t('repair_order.information.status.activity_text') %></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-2 control-label"><%= t('repair_order.information.status.final') %></label>
+
+                  <div class="col-md-10">
+                    <%= f.select :final_status_id,
+                                 options_for_select(all_final_status.collect { |fs| [fs.name, fs.id] },
+                                                    repair_info.final_status_id),
+                                 {prompt: t('repair_order.information.status.select_final')},
+                                 {required: 'true', class: 'form-control m-b'}
+                    %>
+                    <span class="help-block m-b-none del-help"><%= t('repair_order.information.status.final_text') %></span>
+                  </div>
+                </div>
+              <!--</form>-->
+            </div>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="ibox float-e-margins">
+            <div class="ibox-title">
+              <h5><%= t('repair_order.information.links.operations') %></h5>
+            </div>
+            <div class="ibox-content">
+              <div class="row">
+                <div class="col-sm-12 b-r">
+
+                  <form role="form">
+                    <div class="form-group">
+                      <div class="i-checks1">
+                        <label> <input type="checkbox" name="repair_information[deliverable]"><i></i> <%= t('repair_order.information.links.deliver') %> </label>
+                        <span class="help-block m-b-none del-help"><%= t('repair_order.information.links.deliver_text') %></span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="i-checks">
+                        <label> <input type="checkbox"><i></i> <%= t('repair_order.information.links.transfer') %> </label>
+                        <span class="help-block m-b-none del-help"><%= t('repair_order.information.links.transfer_text') %></span>
+                      </div>
+                      <div class="job-transfer-by-tech">
+
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="i-checks2">
+                        <label> <input type="checkbox"><i></i> <%= t('repair_order.information.links.add_parts') %> </label>
+                        <span class="help-block m-b-none del-help"><%= t('repair_order.information.links.add_parts_text') %></span>
+                      </div>
+                      <div id="parts-inventories" class="hide">
+                        <%= text_field_tag 'repair_information[parts]', {}, class: 'form-control', id: 'type-to-get-parts' %>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <%= f.submit t('repair_order.information.links.update'), class: 'btn btn-sm btn-primary pull-left m-t-n-xs' %>
+      <%= link_to t('repair_order.back'), repair_orders_path, class: 'btn btn-sm btn-white m-t-n-xs margin-left' %>
+    </div>
+
+
+    <script>
+      $(document).ready(function(){
+          $( ".i-checks input" ).change(function() {
+              var $input = $( this );
+              if($input.is(':checked')){
+                  $(".job-transfer-by-tech").html('<%= escape_javascript(render(:partial => 'repair_informations/repair_assignment', :locals => {:f => f, :info => repair_info}))%>')
+                  $( ".i-checks1 input").prop('checked', false);
+                  $( ".i-checks2 input").prop('checked', false);
+                  $( ".i-checks2 input").val('');
+                  $("#parts-inventories").addClass('hide').removeClass('show');
+              }else{
+                  $(".job-transfer-by-tech").html('');
+              }
+          });
+          $( ".i-checks2 input" ).change(function() {
+              var $input = $( this );
+              if($input.is(':checked')){
+                  $("#parts-inventories").addClass('show').removeClass('hide');
+              }else{
+                  $("#parts-inventories").addClass('hide').removeClass('show');
+              }
+          });
+          $("#type-to-get-parts").tokenInput("/home/parts_names.json", {
+              theme: "facebook",
+              hintText: '<%= t('repair_order.information.links.search_hint') %>'
+          });
+
+          $( ".i-checks2 input, .i-checks1 input" ).change(function() {
+              if($( ".i-checks input").is(':checked')){
+                  $( ".i-checks1 input").prop('checked', false);
+                  $( ".i-checks2 input").prop('checked', false);
+                  $( ".i-checks2 input").val('');
+                  $("#parts-inventories").addClass('hide').removeClass('show');
+              }
+          });
+      })
+    </script>
+
+<% end %>

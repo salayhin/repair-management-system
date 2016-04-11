@@ -14,4 +14,12 @@ module ApplicationHelper
       return params[:controller] + '-' + params[:action]
     end
   end
+
+  def all_activity_status
+    ActivityStatus.order('updated_at DESC')
+  end
+
+  def all_final_status
+    FinalStatus.order('updated_at DESC')
+  end
 end
