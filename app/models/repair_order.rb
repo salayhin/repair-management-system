@@ -45,7 +45,7 @@ class RepairOrder < ActiveRecord::Base
   }
 
   # callbacks
-  after_update :construct_repair_information
+  after_create :construct_repair_information
 
   # scopes
 
