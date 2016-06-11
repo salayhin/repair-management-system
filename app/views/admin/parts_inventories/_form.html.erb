@@ -26,6 +26,12 @@
                 <%= f.label 'Quantity(Stock)' %>
                 <%= f.text_field :stock, class: 'form-control', placeholder: 'Quantity', required: true %>
               </div>
+
+              <div class="form-group">
+                <%= f.label 'Service Center' %>
+                <%= f.select :service_center_id, options_for_select(@service_centers.collect{|sc| [sc.name, sc.id] }, @parts_inventory.service_center), prompt: 'Assign Part to any Service Center ' %>
+              </div>
+
               <div class="form-group">
                 <%= f.label 'Identification Number' %>
                 <%= f.text_field :identification_no, class: 'form-control', placeholder: 'Identification Number' %>

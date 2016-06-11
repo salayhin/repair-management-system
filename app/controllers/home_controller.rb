@@ -11,7 +11,8 @@ class HomeController < ApplicationController
   end
 
   def parts_names
-    results = PartsInventory.where("name LIKE ?", "#{params[:search_key]}%").limit(5)
+    user_sc = current_user.profile.service_center
+    results = user_sc.parts_inventories.where("name LIKE ?", "#{params[:search_key]}%").limit(5)
     results = results.select("id,name")
     render :json => results.to_json
   end

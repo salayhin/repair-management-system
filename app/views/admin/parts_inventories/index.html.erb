@@ -44,6 +44,9 @@
                   <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 204px;" aria-label="Browser: activate to sort column ascending">
                     Status
                   </th>
+                  <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 204px;" aria-label="Browser: activate to sort column ascending">
+                    Service Center
+                  </th>
                   <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 95px;" aria-label="CSS grade: activate to sort column ascending">
                     Action
                   </th>
@@ -58,6 +61,7 @@
                       <td><%= parts.stock %></td>
                       <td><%= parts.used %></td>
                       <td class="text-center"><%= parts.status ? 'Active' : 'Inactive' %></td>
+                      <td class="text-center"><%= parts.service_center.name %></td>
                       <td>
                         <%= link_to 'Show', admin_parts_inventory_path(parts), :class => 'btn btn-white btn-xs', 'data-no-turbolink' => true %>
                         <%= link_to 'Edit', edit_admin_parts_inventory_path(parts), :class => 'btn btn-primary btn-xs' if admins? %>

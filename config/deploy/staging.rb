@@ -1,6 +1,6 @@
 set :stage, :staging # change environment
 set :branch, 'development' # change git brunch name
-set :server_name, "104.237.196.10"
+set :server_name, "XXXXXXXXXXXXXX"
 set :full_app_name, "#{fetch(:application)}_#{fetch(:stage)}"
 
 # Simple Role Syntax
@@ -15,9 +15,9 @@ set :full_app_name, "#{fetch(:application)}_#{fetch(:stage)}"
 
 # set your own server's IP
 
-role :web, "104.237.196.10" # Your HTTP server, Apache/etc
-role :app, "104.237.196.10" # This may be the same as your `Web` server
-role :db, "104.237.196.10", :primary => true # This is where Rails migrations will run
+role :web, "xxx.xxx.xxx.xxx" # Your HTTP server, Apache/etc
+role :app, "xxx.xxx.xxx.xxx" # This may be the same as your `Web` server
+role :db, "xxx.xxx.xxx.xxx", :primary => true # This is where Rails migrations will run
 
 set :deploy_to, '/home/apps/rms' # change the directory of project
 
@@ -29,7 +29,7 @@ set 'rails_env', :staging
 # server list. The second argument is a, or duck-types, Hash and is
 # used to set extended properties on the server.
 
-server '104.237.196.10', user: 'root', roles: %w{web app db}
+server 'xxx.xxx.xxx.xxx', user: 'root', roles: %w{web app db}
 
 
 # Custom SSH Options
@@ -42,6 +42,6 @@ server '104.237.196.10', user: 'root', roles: %w{web app db}
 set :ssh_options, {
                     forward_agent: false,
                     auth_methods: %w(password),
-                    password: '*********', # change to your password
+                    password: 'xxxxxxxxxx', # change to your password
                     user: 'root',  # change to your server SSH user
                 }

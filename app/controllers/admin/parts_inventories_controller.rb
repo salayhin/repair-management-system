@@ -1,12 +1,18 @@
 class Admin::PartsInventoriesController < ApplicationController
   before_filter :authenticate_admin_user!, except: [:show, :index]
   before_action :set_admin_parts_inventory, only: [:show, :edit, :update, :destroy]
+  before_action :load_service_centers
 
   layout 'admin'
   # GET /admin/parts_inventories
   # GET /admin/parts_inventories.json
   def index
-    @parts_inventories = PartsInventory.all
+    if current_user
+      user_serviceCenter = current_user.profile.service_center
+      @parts_inventories = user_serviceCenter.parts_inventories
+    else
+      @parts_inventories = PartsInventory.all
+    end
   end
 
   # GET /admin/parts_inventories/1
@@ -16,6 +22,7 @@ class Admin::PartsInventoriesController < ApplicationController
 
   # GET /admin/parts_inventories/new
   def new
+
     @parts_inventory = PartsInventory.new
   end
 
@@ -71,6 +78,10 @@ class Admin::PartsInventoriesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def admin_parts_inventory_params
-    params.require(:parts_inventory).permit(:name, :identification_no, :stock, :used, :description, :status)
+    params.require(:parts_inventory).permit(:name, :identification_no, :stock, :used, :description, :status, :service_center_id)
+  end
+
+  def load_service_centers
+    @service_centers = ServiceCenter.order('updated_at DESC')
   end
 end
