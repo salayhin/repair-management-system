@@ -25,6 +25,9 @@ Rails.application.routes.draw do
     collection do
       get :device_models
     end
+    member do
+      post :deliver
+    end
   end
 
   resources :repair_informations, only: [:create, :update, :show]
