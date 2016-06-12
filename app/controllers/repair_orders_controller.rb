@@ -15,9 +15,11 @@ class RepairOrdersController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: "repair_orders",
+        render pdf: 'repair_orders',
                template: 'repair_orders/index.pdf.erb',
-               encoding: 'utf8'
+               encoding: 'utf8',
+               layout: 'layouts/pdf.html.erb',
+               show_as_html: params[:debug].present?
       end
     end
   end
@@ -31,7 +33,9 @@ class RepairOrdersController < ApplicationController
       format.pdf do
         render pdf: "invoice",
                template: 'repair_orders/show.pdf.erb',
-               encoding: 'utf8'
+               encoding: 'utf8',
+               layout: 'layouts/pdf.html.erb',
+               show_as_html: params[:debug].present?
       end
     end
   end
