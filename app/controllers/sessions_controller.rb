@@ -14,10 +14,10 @@ class SessionsController < Devise::SessionsController
     sign_in(scope, resource) unless warden.user(scope) == resource
     respond_to do |format|
       @success = true
-      if current_user.role? :super_admin
+      if current_user.role?(:super_admin) || current_user.role?(:admin)
         format.html {redirect_to admin_dashboard_path}
       else
-        format.html {redirect_to session.has_key?(:return_url) ? session.delete(:return_url) : admin_dashboard_path}
+        format.html {redirect_to session.has_key?(:return_url) ? session.delete(:return_url) : repair_orders_path}
       end
     end
   end

@@ -12,6 +12,14 @@ class RepairOrdersController < ApplicationController
     else
       @repair_orders = current_user.profile.service_center.repair_orders.includes(:repair_information, :repair_assignments)
     end
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "repair_orders",
+               template: 'repair_orders/index.pdf.erb',
+               encoding: 'utf8'
+      end
+    end
   end
 
   # GET /repair_orders/1
@@ -22,7 +30,8 @@ class RepairOrdersController < ApplicationController
       format.html
       format.pdf do
         render pdf: "invoice",
-               template: 'repair_orders/show.pdf.erb'
+               template: 'repair_orders/show.pdf.erb',
+               encoding: 'utf8'
       end
     end
   end

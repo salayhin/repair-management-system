@@ -188,7 +188,7 @@
                   <div class="form-group">
                     <%= ff.select :assigned_id,
                                  options_for_select(service_center_employees.collect { |sc| [sc.full_name, sc.user.id] },
-                                                    @repair_assignment.assigned_id),
+                                                    @repair_assignment.present? ? @repair_assignment.assigned_id : nil),
                                  {prompt: t('repair_order.assignment.select_text')},
                                  {required: 'true', class: 'form-control m-b'}
                     %>
