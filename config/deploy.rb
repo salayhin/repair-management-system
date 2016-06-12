@@ -19,7 +19,7 @@ set :deploy_via, :remote_cache # off while it is first deployment
 
 # Default value for :format is :pretty
 # set :format, :pretty
-set :rvm1_ruby_version, "ruby-2.2.2"
+set :rvm1_ruby_version, "ruby-2.3.0"
 
 # Default value for :log_level is :debug
 # set :log_level, :debug
