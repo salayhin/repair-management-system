@@ -69,7 +69,7 @@
                         <span class="help-block m-b-none del-help"><%= t('repair_order.information.links.add_parts_text') %></span>
                       </div>
                       <div id="parts-inventories" class="hide">
-                        <%= text_field_tag 'repair_information[parts]', {}, class: 'form-control', id: 'type-to-get-parts' %>
+                        <%= f.text_field :parts, "data-pre" => repair_info.parts_inventories.map(&:attributes).to_json, class: 'form-control', id: 'type-to-get-parts' %>
                       </div>
                     </div>
                   </form>
@@ -111,7 +111,8 @@
           });
           $("#type-to-get-parts").tokenInput("/home/parts_names.json", {
               theme: "facebook",
-              hintText: '<%= t('repair_order.information.links.search_hint') %>'
+              hintText: '<%= t('repair_order.information.links.search_hint') %>',
+              prePopulate: $('#type-to-get-parts').data('pre')
           });
 
           $( ".i-checks2 input, .i-checks1 input" ).change(function() {

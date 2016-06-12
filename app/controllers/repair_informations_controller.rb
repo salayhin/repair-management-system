@@ -33,7 +33,7 @@ class RepairInformationsController < ApplicationController
   def update
     respond_to do |format|
       if @repair_information.update(repair_information_params)
-        format.html { redirect_to @repair_information, notice: 'Repair information was successfully updated.' }
+        format.html { redirect_to repair_orders_path, notice: 'Repair information was successfully updated.' }
         format.json { render :show, status: :ok, location: @repair_information }
       else
         format.html { render :edit }
@@ -50,6 +50,7 @@ class RepairInformationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def repair_information_params
-      params[:repair_information]
+      params.require(:repair_information).permit(:activity_status_id, :final_status_id, :parts, :deliverable,
+                                                 repair_assignment_attributes: [:assigned_id, :comment, :assigner_id, :transferred_job, :repair_order_id])
     end
 end
