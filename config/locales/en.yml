@@ -86,6 +86,7 @@ en:
     device_brand_prompt: 'Select Device Brand'
     service_center: 'Service Center'
     service_center_prompt: 'Select Service Center'
+    deliver: 'Deliverable'
     customer:
       header: 'Customer Information'
       name: 'Customer Name'

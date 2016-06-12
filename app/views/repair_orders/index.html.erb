@@ -47,10 +47,15 @@
                 <tbody>
                 <% @repair_orders.each_with_index do |order, i| %>
                     <tr class="gradeA <%= i%2 == 0 ? 'odd' : 'even' %>" role="row">
-                      <td class="sorting_1"><%= order.device_model.name %> | <%= order.device_brand.name %></td>
+                      <td class="sorting_1">
+                        <%= order.device_model.name %> | <%= order.device_brand.name %>
+                        <% if order.repair_information.deliverable %>
+                            <span class="badge badge-success"><%= t('repair_order.deliver') %></span>
+                        <% end %>
+                      </td>
                       <td>
-                        <p>To: Kamal</p>
-                        <p>By: Rashed</p>
+                        <p>To: <%= order.repair_assignments.last.assigner.profile.full_name %> </p>
+                        <p>By: <%= order.repair_assignments.last.assigned.profile.full_name %></p>
                       </td>
                       <td class="center">
                         <p><%= order.customer_name %></p>

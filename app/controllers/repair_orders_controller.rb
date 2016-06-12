@@ -8,9 +8,9 @@ class RepairOrdersController < ApplicationController
   # GET /repair_orders.json
   def index
     if current_user.is_super_admin?
-      @repair_orders = RepairOrder.all
+      @repair_orders = RepairOrder.includes(:repair_information, :repair_assignments).all
     else
-      @repair_orders = current_user.profile.service_center.repair_orders
+      @repair_orders = current_user.profile.service_center.repair_orders.includes(:repair_information, :repair_assignments)
     end
   end
 

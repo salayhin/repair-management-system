@@ -86,6 +86,7 @@ bn:
     device_brand_prompt: 'যন্ত্রের ব্র্যান্ড নির্বাচন করুন'
     service_center: 'সার্ভিসিং সেন্টার'
     service_center_prompt: 'সার্ভিসিং সেন্টার নির্বাচন করুন'
+    deliver: 'ডেলিভারীযোগ্য'
     customer:
       header: 'কাস্টমারের তথ্য'
       name: 'কাস্টমারের নাম'
