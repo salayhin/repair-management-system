@@ -1,6 +1,6 @@
 class RepairOrdersController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_repair_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_repair_order, only: [:show, :edit, :update, :destroy, :deliver]
   before_filter :can_crud?, only: [:create, :edit, :new, :update]
 
   layout 'admin'
@@ -91,6 +91,11 @@ class RepairOrdersController < ApplicationController
     @device_brand = DeviceBrand.find(params[:brand_id])
     @device_models = @device_brand.device_models
     @repair_order = params[:order_id].present? ? RepairOrder.find(params[:order_id]) :nil
+  end
+
+  def deliver
+    @repair_order.update_column(:delivered, true)
+    redirect_to repair_orders_path, notice: 'Repair order was successfully delivered.'
   end
 
   private

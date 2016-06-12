@@ -87,6 +87,8 @@ en:
     service_center: 'Service Center'
     service_center_prompt: 'Select Service Center'
     deliver: 'Deliverable'
+    delivery: 'Give Delivery'
+    confirm_deliver: 'Are you sure?'
     customer:
       header: 'Customer Information'
       name: 'Customer Name'
