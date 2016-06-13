@@ -7,11 +7,10 @@ class Admin::PartsInventoriesController < ApplicationController
   # GET /admin/parts_inventories
   # GET /admin/parts_inventories.json
   def index
+    @parts_inventories = PartsInventory.all
     if current_user
       user_serviceCenter = current_user.profile.service_center
-      @parts_inventories = user_serviceCenter.parts_inventories
-    else
-      @parts_inventories = PartsInventory.all
+      @parts_inventories = user_serviceCenter.parts_inventories if user_serviceCenter.present?
     end
   end
 

@@ -42,6 +42,7 @@ class RepairOrdersController < ApplicationController
 
   # GET /repair_orders/new
   def new
+    redirect_to :back, notice: 'You cannot create Repair Order.' if current_user.role?(:super_admin)
     @repair_order = RepairOrder.new
     @repair_assignment = @repair_order.repair_assignments.build
   end

@@ -87,6 +87,7 @@ bn:
     service_center: 'সার্ভিসিং সেন্টার'
     service_center_prompt: 'সার্ভিসিং সেন্টার নির্বাচন করুন'
     deliver: 'ডেলিভারীযোগ্য'
+    deliverd: 'ডেলিভারী করা হয়েছে'
     delivery: 'ডেলিভারী করুন'
     confirm_deliver: 'নিশ্চিত ডেলিভারী করবেন?'
     customer:

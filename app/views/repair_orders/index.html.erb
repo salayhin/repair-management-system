@@ -48,8 +48,8 @@
                       <td class="sorting_1">
                         <%= order.device_model.name %> | <%= order.device_brand.name %>
                         <% if order.repair_information.deliverable %>
-                            <span class="badge badge-success"><%= t('repair_order.deliver') %></span><br/>
-                            <%= link_to t('repair_order.delivery'), deliver_repair_order_path(order), method: 'post', data: { confirm: t('repair_order.confirm_deliver') }  %>
+                            <span class="badge badge-success"><%= order.delivered ? t('repair_order.deliver') : t('repair_order.deliverd') %></span><br/><br/>
+                            <% if current_user.role?(:receptionist) %><%= link_to t('repair_order.delivery'), deliver_repair_order_path(order), method: 'post', data: { confirm: t('repair_order.confirm_deliver') }  %><% end %>
                         <% end %>
                       </td>
                       <td>
