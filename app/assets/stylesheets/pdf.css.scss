@@ -27,3 +27,28 @@ body {overflow-x: hidden;}
   text-align: right;
   width: 15%;
 }
+dl {
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+.dl-horizontal dt {
+  clear: left;
+  float: left;
+  overflow: hidden;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 160px;
+}
+dt {
+  font-weight: 700;
+}
+dd, dt {
+  line-height: 1.42857;
+}
+.dl-horizontal dd {
+  margin-left: 180px;
+}
+.col-md-6{
+  //width: 50% !important;
+}

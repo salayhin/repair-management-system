@@ -32,41 +32,41 @@
               </div>
             </div>
 
-            <div class="table-responsive m-t">
-              <table class="table invoice-table">
-                <thead>
-                <tr>
-                  <th>Device</th>
-                  <th>IMEI-1</th>
-                  <th>Device Condition</th>
-                  <th>Accessories</th>
-                  <th>Dealer</th>
-                  <th>Warranty</th>
-                  <!--<th>Total Price</th>-->
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td><div><strong><%= @repair_order.device_model.name %></strong></div>
-                    <small>Product of: <%= @repair_order.device_brand.name %></small></td>
-                  <td><%= @repair_order.imei1 %></td>
-                  <td>
+            <div class="row">
+              <div class="col-md-6">
+                <dl class="dl-horizontal">
+                  <dt>Device:</dt>
+                  <dd>
+                    <div><strong><%= @repair_order.device_model.name %></strong></div>
+                    <small> | <%= @repair_order.device_brand.name %></small>
+                  </dd>
+                  <dt>IMEI-1:</dt>
+                  <dd>  <%= @repair_order.imei1 %></dd>
+                  <dt>Device Condition:</dt>
+                  <dd>
                     <% @repair_order.device_condition.each do |con| %>
                         <%= RepairOrder::DEVICE_CONDITIONS[con.to_i] %><br>
                     <% end %>
-                  </td>
-                  <td>
-                    <% @repair_order.accessories_present.each do |acc| %>
-                        <%= RepairOrder::ACCESORIES[acc.to_i] %><br>
-                    <% end %>
-                  </td>
-                  <td><%= @repair_order.dealer %></td>
-                  <td><%= @repair_order.warranty ? 'Warranty present' : 'Warranty NOT present' %></td>
-                </tr>
+                  </dd>
 
-                </tbody>
-              </table>
-            </div><!-- /table-responsive -->
+                </dl>
+              </div>
+              <div id="cluster_info" class="col-md-6">
+                <dl class="dl-horizontal">
+                  <dt>Accessories:</dt>
+                  <dd><% @repair_order.accessories_present.each do |acc| %>
+                        <%= RepairOrder::ACCESORIES[acc.to_i] %><br>
+                    <% end %></dd>
+                  <dt>Dealer:</dt>
+                  <dd> <%= @repair_order.dealer %></dd>
+                  <dt>Warranty:</dt>
+                  <dd> <%= @repair_order.warranty ? 'Warranty present' : 'Warranty NOT present' %></dd>
+                </dl>
+              </div>
+            </div>
+
+
+            <!-- /table-responsive -->
 
             <!--<table class="table invoice-total">-->
             <!--<tbody>-->
